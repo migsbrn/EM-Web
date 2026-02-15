@@ -1,0 +1,306 @@
+name: easym
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: "none" # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.7.2
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+  font_awesome_flutter: ^10.6.0 # Latest stable version as of March 2025
+  fl_chart: ^0.70.2 # Latest stable version for charts
+  firebase_core: ^3.13.0 # Latest stable version for Firebase core
+  firebase_auth: ^5.5.2 # Latest stable version for Firebase Authentication
+  cloud_firestore: ^5.6.6 # Latest stable version for Firestore
+  google_sign_in: ^6.2.2
+  firebase_auth_web: ^5.14.2 # Latest stable version for web-specific Firebase Authentication
+  js: ^0.7.2 # Required for firebase_auth_web interop on web (discontinued; find a replacement)
+  flutter_tts: ^4.2.2
+  speech_to_text: ^7.0.0 # Updated to latest stable version
+  string_similarity: ^2.0.0
+  tutorial_coach_mark: ^1.2.4 # Added this dependency for guided walkthroughs
+  shared_preferences: ^2.0.15 # Add this line
+  path_provider: ^2.1.1
+  permission_handler: ^12.0.1
+  open_file: ^3.3.2
+  flutter_pdfview: ^1.3.2
+  audioplayers: ^6.4.0 # ✅ Added for playing audio clips (main and options)
+  confetti: ^0.7.0
+  signature: ^5.2.1
+  video_player: ^2.8.1
+  flutter_local_notifications: ^17.2.3 # ✅ Added for push notifications
+  timezone: ^0.9.4 # ✅ Added for timezone support
+  flutter_launcher_icons: ^0.13.1
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.8
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  # The "flutter_lints" package below contains a set of recommended lints to
+  # encourage good coding practices. The lint set provided by the package is
+  # activated in the `analysis_options.yaml` file located at the root of your
+  # package. See that file for information about deactivating specific lint
+  # rules and activating additional ones.
+  flutter_lints: ^5.0.0
+
+# For information on the generic Dart part of this file, see the
+# following page: https://dart.dev/tools/pub/pubspec
+
+# The following section is specific to Flutter packages.
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/WhereDoesItBelong.png
+    - assets/prevoc.png
+    - assets/LetterTracing.png
+    - assets/FormTheWord.png
+    - assets/Flashcard.png
+    - assets/ColorMatching.png
+    - assets/MatchTheSound.png
+    - assets/SayItRight!.png
+    - assets/logo.png
+    - assets/alpha.png
+    - assets/Apple.jpg
+    - assets/ball.jpg
+    - assets/cat.jpg
+    - assets/dog.jpg
+    - assets/elephant.jpg
+    - assets/fish.jpg
+    - assets/grapes.jpg
+    - assets/house.jpg
+    - assets/ice_cream.jpg
+    - assets/jacket.jpg
+    - assets/key.jpg
+    - assets/lion.jpg
+    - assets/mango.jpg
+    - assets/nest.jpg
+    - assets/orange.jpg
+    - assets/pen.jpg
+    - assets/quilt.jpg
+    - assets/rabbit.jpg
+    - assets/shoes.jpg
+    - assets/turtle.jpg
+    - assets/umbrella.jpg
+    - assets/violin.jpg
+    - assets/watch.jpg
+    - assets/xylophone.jpg
+    - assets/yarn.jpg
+    - assets/zebra.jpg
+    - assets/jump.jpg
+    - assets/girl_reading.jpg
+    - assets/dog_running.jpg
+    - assets/kids_playing.jpg
+    - assets/pic-story.png
+    - assets/boy_eating.jpg
+    - assets/cat_sleeping.jpg
+    - assets/family_picnic.jpg
+    - assets/farmer_planting.jpg
+    - assets/kid_writing.jpg
+    - assets/man_driving.jpg
+    - assets/mom_cooking.jpg
+    - assets/teacher_teaching.jpg
+    - assets/Rhyme_Read.png
+    - assets/cat_mat.jpg
+    - assets/hand_sand.jpg
+    - assets/hen_pen.jpg
+    - assets/games.png
+    - assets/quiz.jpg
+    - assets/S-Dog.jpg
+    - assets/puppy.jpg
+    - assets/lrn.png
+    - assets/cube.png
+    - assets/ake_words.png
+    - assets/colors.png
+    - assets/faces.png
+    - assets/shapes.png
+    - assets/star.png
+    - assets/alphabet_corner.png
+    - assets/abc_blocks.png
+    - assets/circle.png
+    - assets/heart.png
+    - assets/rectangle.png
+    - assets/triangle.png
+    - assets/square.png
+    - assets/puppy.png
+    - assets/girl.png
+    - assets/grl.jpg
+    - assets/board.png
+    - assets/chair.png
+    - assets/flower.png
+    - assets/grape.png
+    - assets/orange.png
+    - assets/shoes.png
+    - assets/pic1.jpg
+    - assets/pic2.jpg
+    - assets/pic3.jpg
+    - assets/pic4.jpg
+    - assets/apt.jpg
+    - assets/dogg.jpg
+    - assets/d&d.png
+    - assets/mth.png
+    - assets/sayitright.png
+    - assets/functional.png
+    - assets/communication.png
+    - assets/alphabet.png
+    - assets/rhyme.png
+    - assets/color.png
+    - assets/shape.png
+    - assets/sta.png
+    - assets/story.png
+    - assets/prevocational.png
+    - assets/social.png
+    - assets/balloons.png
+    - assets/box1.png
+    - assets/doughnut1.png
+    - assets/envelope1.png
+    - assets/pizza1.png
+    - assets/bird.png
+    - assets/chainsaw.png
+    - assets/dog_barking.png
+    - assets/fireworks.jpg
+    - assets/police.jpg
+    - assets/snake.png
+    - assets/whisper.png
+    - assets/water.png
+    - assets/wind.jpg
+    - assets/clock.png
+    - assets/Sounds.webp
+    - assets/hexagon.png
+    - assets/pentagon.png
+    - assets/octagon.png
+    - assets/measuring.png
+    - assets/happy.jpg
+    - assets/playing.jpg
+    - assets/cooking.jpg
+    - assets/eating_dinner.jpg
+    - assets/love_family.jpg
+    - assets/spoon.png
+    - assets/Fork.png
+    - assets/plate.png
+    - assets/cup.png
+    - assets/toothbrush.png
+    - assets/soap.png
+    - assets/towel.png
+    - assets/pillow.png
+    - assets/blanket.png
+    - assets/lamp.png
+    - assets/daily.png
+    - assets/app.png
+    - assets/sky.jpg
+    - assets/grass.jpg
+    - assets/sun.jpg
+    - assets/grape.png
+    - assets/oranges.png
+    - assets/flowers.png
+    - assets/red.png
+    - assets/blue.png
+    - assets/yellow.png
+    - assets/green.png
+    - assets/orange_color.png
+    - assets/purple.png
+    - assets/pink.png
+    - assets/lrn_shape.png
+    - assets/lrn_family.png
+    - assets/lrn_read.png
+    - assets/lrn_alphabets.png
+    - assets/lrn_colors.png
+    - assets/lrn_tts.png
+    - assets/lrn_reading.png
+    - assets/lrn_sounds.png
+    - assets/lrn_activity.png
+    - assets/lrn_daily.png
+    - assets/car.jpg
+    - assets/bike.jpg
+    - assets/phone.jpg
+    - assets/siren.jpg
+    - assets/cow.jpg
+    - assets/bird.jpg
+    - assets/chicken.jpg
+
+    # ✅ Audio assets
+    - assets/sound/dog_bark.mp3
+    - assets/sound/bark1.mp3
+    - assets/sound/bark2.mp3
+    - assets/sound/bark3.mp3
+    - assets/sound/success.mp3
+    - assets/sound/error.mp3
+    - assets/sound/start.mp3
+    - assets/sound/meowing-cat.mp3
+    - assets/sound/car-horn.mp3
+    - assets/sound/bike-bell.mp3
+    - assets/sound/phone-ring.mp3
+    - assets/sound/siren.mp3
+
+    # ✅ Video assets
+    - assets/videos/drinking.mp4
+    - assets/videos/sweep.mp4
+    - assets/videos/wake.mp4
+    - assets/videos/wash.mp4
+    - assets/videos/watering.mp4
+    - assets/videos/dog.mp4
+    - assets/videos/cat.mp4
+    - assets/videos/bird.mp4
+    - assets/videos/horse1.mp4
+
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/EM-LOGO.png"
+
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+  # An image asset can refer to one or more resolution-specific "variants", see
+  # https://flutter.dev/to/resolution-aware-images
+
+  # For details regarding adding assets from package dependencies, see
+  # https://flutter.dev/to/asset-from-package
+
+  # To add custom fonts to your application, add a fonts section here,
+  # in this "flutter" section. Each entry in this list should have a
+  # "family" key with the font family name, and a "fonts" key with a
+  # list giving the asset and other descriptors for the font. For
+  # example:
+  # fonts:
+  #   - family: Schyler
+  #     fonts:
+  #       - asset: fonts/Schyler-Regular.ttf
+  #       - asset: fonts/Schyler-Italic.ttf
+  #         style: italic
+  #   - family: Trajan Pro
+  #     fonts:
+  #       - asset: fonts/TrajanPro.ttf
+  #       - asset: fonts/TrajanPro_Bold.ttf
+  #         weight: 700
+  #
+  # For details regarding fonts from package dependencies,
+  # see https://flutter.dev/to/font-from-package

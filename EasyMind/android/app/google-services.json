@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1026451165224",
+    "project_id": "easy-mind-51834",
+    "storage_bucket": "easy-mind-51834.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1026451165224:android:4b1d0898cac03154be651d",
+        "android_client_info": {
+          "package_name": "com.example.easymind"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1026451165224-7m8tjenk3b04qr9au68oji4ii8nv8ftv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPUg22bVF57bbxPo5v8fIjKsSo6yODS3k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1026451165224-7m8tjenk3b04qr9au68oji4ii8nv8ftv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
