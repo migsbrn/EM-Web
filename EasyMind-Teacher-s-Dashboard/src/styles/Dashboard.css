@@ -1,0 +1,741 @@
+/* Professional Dashboard - Clean and Formal Teacher Design */
+
+/* Import professional fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Source+Sans+Pro:wght@300;400;600;700&display=swap');
+
+/* Professional Color Palette */
+:root {
+  --primary-color: #1e293b;
+  --secondary-color: #475569;
+  --accent-color: #3b82f6;
+  --success-color: #059669;
+  --warning-color: #d97706;
+  --danger-color: #dc2626;
+  --light-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --border-color: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #64748b;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Professional Typography */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+/* Grid Alignment Improvements */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.container-fluid {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+.row {
+  margin-left: -0.75rem;
+  margin-right: -0.75rem;
+}
+
+.row > * {
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+}
+
+/* Ensure equal height for stat cards in same row */
+.row.g-4 > [class*="col-"] {
+  display: flex;
+  flex-direction: column;
+}
+
+.row.g-4 > [class*="col-"] > * {
+  flex: 1;
+}
+
+/* Professional Dashboard Header */
+.dashboard-header {
+  background: var(--card-bg);
+  border-radius: 16px;
+  padding: 3rem 2.5rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.dashboard-header::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: linear-gradient(90deg, var(--accent-color) 0%, var(--success-color) 100%);
+}
+
+.dashboard-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.75rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+  text-align: center;
+}
+
+.dashboard-subtitle {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.25rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin-bottom: 0;
+  text-align: center;
+}
+
+/* Professional Stat Cards */
+/* Professional Stat Cards - Improved Alignment */
+.db-stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 180px;
+  text-align: center;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  position: relative;
+  overflow: hidden;
+  width: 100%;
+  min-height: 180px;
+}
+
+.db-stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color) 0%, var(--success-color) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.db-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-color);
+}
+
+.db-stat-card:hover::before {
+  opacity: 1;
+}
+
+.db-stat-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 2.5rem;
+  margin: 0 0 0.75rem 0;
+  color: var(--text-primary);
+  font-weight: 800;
+  letter-spacing: -0.02em;
+}
+
+.db-stat-card p {
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+  margin: 0;
+  letter-spacing: 0.01em;
+}
+
+/* Specific Stat Card Colors */
+.db-stat-card.db-total-students {
+  background: linear-gradient(135deg, #eff6ff 0%, #dbeafe 100%);
+}
+
+.db-stat-card.db-total-students::before {
+  background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+}
+
+.db-stat-card.db-improved-students {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+.db-stat-card.db-improved-students::before {
+  background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
+}
+
+.db-stat-card.db-needs-improvement {
+  background: linear-gradient(135deg, #fffbeb 0%, #fef3c7 100%);
+}
+
+.db-stat-card.db-needs-improvement::before {
+  background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+}
+
+.db-stat-card.db-teacher-materials {
+  background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+}
+
+.db-stat-card.db-teacher-materials::before {
+  background: linear-gradient(135deg, #0ea5e9 0%, #0284c7 100%);
+}
+
+.db-stat-card.db-built-in-modules {
+  background: linear-gradient(135deg, #faf5ff 0%, #f3e8ff 100%);
+}
+
+.db-stat-card.db-built-in-modules::before {
+  background: linear-gradient(135deg, #a855f7 0%, #9333ea 100%);
+}
+
+/* Professional Chart Cards - Clean Design */
+.db-chart-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 2.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  min-height: 420px;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+
+.db-chart-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color) 0%, var(--success-color) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.db-chart-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-color);
+}
+
+.db-chart-card:hover::before {
+  opacity: 1;
+}
+
+.db-chart-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  flex-shrink: 0;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.db-chart-card canvas {
+  flex: 1;
+  max-height: 300px;
+}
+
+/* Chart Containers */
+/* Chart Containers - Responsive Heights */
+#weeklyProgressChart,
+#assessmentResultsChart,
+#overallPerformanceChart,
+#dailyLoginsChart {
+  height: 300px !important;
+  min-height: 300px;
+  max-height: 350px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  padding: 1rem;
+  flex: 1;
+}
+
+/* Professional Top Students Card - Clean Design */
+.db-top-students-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border-color);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  padding: 2.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 420px;
+  overflow-y: auto;
+  position: relative;
+}
+
+.db-top-students-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--accent-color) 0%, var(--success-color) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.db-top-students-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--accent-color);
+}
+
+.db-top-students-card:hover::before {
+  opacity: 1;
+}
+
+.db-top-students-card h3 {
+  font-family: 'Inter', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  color: var(--text-primary);
+  letter-spacing: -0.01em;
+  border-bottom: 2px solid var(--border-color);
+  padding-bottom: 1rem;
+}
+
+.db-top-students-card .dropdown {
+  margin-bottom: 2rem;
+}
+
+.db-top-students-card .form-select {
+  border-radius: 12px;
+  border: 2px solid var(--border-color);
+  padding: 0.875rem 1.25rem;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  background-color: var(--card-bg);
+  box-shadow: var(--shadow-sm);
+  color: var(--text-primary);
+  font-size: 0.95rem;
+  transition: all 0.3s ease;
+}
+
+.db-top-students-card .form-select:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
+  outline: none;
+}
+
+.db-top-students-card .db-students-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.db-top-students-card .db-student-item {
+  display: flex;
+  align-items: center;
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  background: var(--light-bg);
+  border-radius: 12px;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.db-top-students-card .db-student-item:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  background: var(--card-bg);
+  border-color: var(--accent-color);
+}
+
+.db-top-students-card .db-no-students {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  min-height: 200px;
+}
+
+.db-top-students-card .db-student-avatar {
+  margin-right: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.db-top-students-card .db-top-student-img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #e5e7eb;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  object-fit: cover;
+}
+
+.db-top-students-card .db-student-placeholder {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+  border: 2px solid #d1d5db;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9ca3af;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.db-top-students-card .db-student-placeholder:hover {
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 100%);
+  color: #6b7280;
+  transform: scale(1.05);
+}
+
+/* Fallback for when Font Awesome doesn't load */
+.db-top-students-card .db-student-placeholder::before {
+  content: "👤";
+  font-size: 1.2rem;
+  display: none;
+}
+
+/* Show fallback if Font Awesome icon doesn't render */
+.db-top-students-card .db-student-placeholder:not(:has(.fas))::before {
+  display: block;
+}
+
+.db-top-students-card .db-student-placeholder .fas {
+  display: block;
+}
+
+.db-top-students-card .db-text-avatar {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1rem;
+  font-weight: 600;
+  color: #6b7280;
+  display: none;
+}
+
+/* Show text avatar if Font Awesome doesn't load */
+.db-top-students-card .db-student-placeholder:not(:has(.fas)) .db-text-avatar {
+  display: block;
+}
+
+.db-top-students-card .db-student-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.db-top-students-card .db-student-name {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 0.25rem;
+}
+
+.db-top-students-card .db-student-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.db-top-students-card .db-student-score {
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #4f46e5;
+  background: linear-gradient(135deg, #eef2ff 0%, #e0e7ff 100%);
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #c7d2fe;
+}
+
+.db-top-students-card .db-student-level {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #059669;
+  background: linear-gradient(135deg, #ecfdf5 0%, #d1fae5 100%);
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #a7f3d0;
+}
+
+.db-top-students-card .db-student-streak {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #dc2626;
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+  padding: 0.375rem 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #fecaca;
+}
+
+/* Professional Overall Performance Card */
+.db-overall-performance-card {
+  height: 320px;
+}
+
+/* Responsive Design */
+/* Responsive Design - Improved Alignment */
+/* Responsive Design - Professional */
+@media (max-width: 1200px) {
+  .container-fluid {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  .dashboard-header {
+    padding: 2.5rem 2rem;
+    margin-bottom: 2.5rem;
+  }
+  
+  .dashboard-title {
+    font-size: 2.5rem;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 1.125rem;
+  }
+  
+  .db-stat-card {
+    height: 160px;
+    min-height: 160px;
+  }
+  
+  .db-stat-card h3 {
+    font-size: 2.25rem;
+  }
+  
+  .db-chart-card {
+    padding: 2rem;
+    min-height: 380px;
+  }
+  
+  .db-top-students-card {
+    padding: 2rem;
+    min-height: 380px;
+  }
+  
+  #weeklyProgressChart,
+  #assessmentResultsChart,
+  #overallPerformanceChart,
+  #dailyLoginsChart {
+    height: 250px !important;
+    min-height: 250px;
+  }
+}
+
+@media (max-width: 768px) {
+  .dashboard-header {
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .dashboard-title {
+    font-size: 2rem;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 1rem;
+  }
+  
+  .db-stat-card {
+    height: 100px;
+    margin-bottom: 1rem;
+  }
+  
+  .db-stat-card h3 {
+    font-size: 1.75rem;
+  }
+  
+  .db-stat-card p {
+    font-size: 0.8rem;
+  }
+  
+  .db-chart-card {
+    padding: 1.5rem;
+    margin-bottom: 1rem;
+  }
+  
+  .db-chart-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  #weeklyProgressChart,
+  #assessmentResultsChart,
+  #overallPerformanceChart,
+  #dailyLoginsChart {
+    height: 200px !important;
+  }
+  
+  .db-top-students-card {
+    padding: 1.5rem;
+    min-height: 400px;
+    max-height: 500px;
+  }
+  
+  .db-top-students-card h3 {
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+  }
+  
+  .db-top-students-card .db-students-list {
+    max-height: 300px;
+  }
+  
+  .db-top-students-card .db-student-item {
+    padding: 0.75rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .db-top-students-card .db-top-student-img,
+  .db-top-students-card .db-student-placeholder {
+    width: 35px;
+    height: 35px;
+  }
+  
+  .db-top-students-card .db-student-placeholder {
+    font-size: 1.25rem;
+  }
+  
+  .db-top-students-card .db-student-name {
+    font-size: 0.9rem;
+  }
+  
+  .db-top-students-card .db-student-details {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+  
+  .db-top-students-card .db-student-score,
+  .db-top-students-card .db-student-level,
+  .db-top-students-card .db-student-streak {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-header {
+    padding: 1rem;
+    margin-bottom: 1rem;
+  }
+  
+  .dashboard-title {
+    font-size: 1.75rem;
+  }
+  
+  .dashboard-subtitle {
+    font-size: 0.9rem;
+  }
+  
+  .db-stat-card {
+    height: 90px;
+    margin-bottom: 0.75rem;
+  }
+  
+  .db-stat-card h3 {
+    font-size: 1.5rem;
+  }
+  
+  .db-stat-card p {
+    font-size: 0.75rem;
+  }
+  
+  .db-chart-card {
+    padding: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .db-chart-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  #weeklyProgressChart,
+  #assessmentResultsChart,
+  #overallPerformanceChart,
+  #dailyLoginsChart {
+    height: 180px !important;
+  }
+  
+  .db-top-students-card {
+    padding: 1rem;
+    min-height: 350px;
+    max-height: 450px;
+  }
+  
+  .db-top-students-card h3 {
+    font-size: 1.125rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .db-top-students-card .db-students-list {
+    max-height: 250px;
+  }
+  
+  .db-top-students-card .db-student-item {
+    padding: 0.5rem;
+    margin-bottom: 0.375rem;
+  }
+  
+  .db-top-students-card .db-top-student-img,
+  .db-top-students-card .db-student-placeholder {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .db-top-students-card .db-student-placeholder {
+    font-size: 1rem;
+  }
+  
+  .db-top-students-card .db-student-name {
+    font-size: 0.8rem;
+  }
+  
+  .db-top-students-card .db-student-score,
+  .db-top-students-card .db-student-level,
+  .db-top-students-card .db-student-streak {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.375rem;
+  }
+}

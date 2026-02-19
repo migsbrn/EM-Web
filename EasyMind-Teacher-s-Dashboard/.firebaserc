@@ -1,0 +1,15 @@
+{
+  "projects": {
+    "default": "easy-mind-51834"
+  },
+  "targets": {
+    "easy-mind-51834": {
+      "hosting": {
+        "em-teacher-51834-72824": [
+          "em-teacher-51834-72824"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

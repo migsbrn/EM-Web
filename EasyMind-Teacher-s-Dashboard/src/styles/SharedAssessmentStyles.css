@@ -1,0 +1,934 @@
+/* Shared Assessment Styles - Unified Design for All Assessment Components */
+
+:root {
+  /* Professional color palette */
+  --primary-color: #1e293b;
+  --secondary-color: #64748b;
+  --accent-color: #3b82f6;
+  --success-color: #10b981;
+  --warning-color: #f59e0b;
+  --danger-color: #ef4444;
+  --info-color: #06b6d4;
+  
+  /* Background colors */
+  --bg-primary: #ffffff;
+  --bg-secondary: #f8fafc;
+  --bg-tertiary: #f1f5f9;
+  --bg-gradient: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  
+  /* Text colors */
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --text-muted: #94a3b8;
+  
+  /* Border and shadow */
+  --border-color: #e2e8f0;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+/* Main Container - Unified for all assessment components */
+.assessment-container {
+  background: var(--bg-gradient);
+  min-height: 100vh;
+  padding: 2rem 0;
+}
+
+.assessment-main-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* Professional Header - Unified Design */
+.assessment-header {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 3rem 2rem;
+  margin-bottom: 3rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border-color);
+}
+
+.assessment-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 2rem;
+}
+
+.assessment-title-section {
+  flex: 1;
+  min-width: 300px;
+}
+
+.assessment-btn-back {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  border: 2px solid var(--border-color);
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.assessment-btn-back:hover {
+  background: var(--text-secondary);
+  color: var(--bg-primary);
+  border-color: var(--text-secondary);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.assessment-main-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  letter-spacing: -0.025em;
+}
+
+.assessment-main-title i {
+  color: var(--accent-color);
+}
+
+.assessment-subtitle {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  margin: 0;
+  line-height: 1.6;
+}
+
+.assessment-stats {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+  padding: 1rem;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  min-width: 100px;
+}
+
+.stat-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin-bottom: 0.25rem;
+}
+
+.stat-label {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Assessment Cards Section - Unified Design */
+.assessment-cards-section {
+  margin-bottom: 3rem;
+}
+
+.assessment-section-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.assessment-section-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.assessment-section-title i {
+  color: var(--accent-color);
+}
+
+.assessment-section-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Assessment Cards - Unified Design */
+.assessment-card {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  height: 100%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 1px solid var(--border-color);
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+.assessment-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--card-color);
+  transition: all 0.3s ease;
+}
+
+.assessment-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-xl);
+  border-color: var(--card-color);
+}
+
+.assessment-card:hover::before {
+  height: 6px;
+}
+
+.assessment-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1.5rem;
+}
+
+.assessment-card-icon-wrapper {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, var(--card-color), var(--card-hover-color));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-md);
+}
+
+.assessment-card-icon {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.assessment-card-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-secondary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  transition: all 0.3s ease;
+}
+
+.assessment-card:hover .assessment-card-badge {
+  background: var(--card-color);
+  color: white;
+}
+
+.assessment-card-body {
+  flex: 1;
+}
+
+.assessment-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+  line-height: 1.3;
+}
+
+.assessment-card-description {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+}
+
+.assessment-card-features {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.assessment-card-feature-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+.assessment-card-feature-item i {
+  width: 16px;
+  color: var(--card-color);
+  font-size: 0.875rem;
+}
+
+/* Results Section - Unified Design */
+.assessment-results-section {
+  margin-bottom: 3rem;
+}
+
+.assessment-results-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.assessment-results-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 1rem;
+}
+
+.assessment-results-title i {
+  color: var(--accent-color);
+}
+
+.assessment-results-description {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* Professional Table Styles - Unified */
+.assessment-table {
+  font-size: 0.875rem;
+  margin-bottom: 0;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.assessment-table th {
+  font-weight: 600;
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  padding: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: 0.75rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.assessment-table td {
+  vertical-align: middle;
+  color: var(--text-secondary);
+  padding: 1rem;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.assessment-table tbody tr:hover {
+  background-color: var(--bg-secondary);
+}
+
+.assessment-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Table Element Styles - Unified */
+.attempt-badge {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid var(--border-color);
+}
+
+.percentage {
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+.percentage.passed {
+  color: var(--success-color);
+}
+
+.percentage.failed {
+  color: var(--danger-color);
+}
+
+.progress-indicator {
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+}
+
+.progress-indicator.improved {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+}
+
+.progress-indicator.declined {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+}
+
+.status-badge {
+  padding: 0.25rem 0.75rem;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.status-badge.passed {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success-color);
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.status-badge.failed {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.difficulty-badge {
+  background: var(--bg-secondary);
+  color: var(--text-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  border: 1px solid var(--border-color);
+}
+
+.time-spent {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  font-weight: 500;
+}
+
+.date-info {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+/* Empty State Styles */
+.assessment-empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.assessment-empty-state i {
+  font-size: 4rem;
+  color: var(--text-muted);
+  margin-bottom: 1.5rem;
+}
+
+.assessment-empty-state h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.75rem;
+}
+
+.assessment-empty-state p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+/* Loading State */
+.assessment-loading {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg-primary);
+  border-radius: 16px;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.assessment-loading i {
+  font-size: 3rem;
+  color: var(--accent-color);
+  margin-bottom: 1rem;
+}
+
+.assessment-loading p {
+  font-size: 1.125rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
+
+/* ========================================
+   PROGRESS DETAILS PAGE STYLES
+   ======================================== */
+
+/* Progress Summary Grid */
+.progress-summary-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.progress-stat-card {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.progress-stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.progress-stat-icon {
+  font-size: 2.5rem;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+
+.progress-stat-content {
+  flex: 1;
+}
+
+.progress-stat-label {
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.5rem;
+}
+
+.progress-stat-value {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+.progress-stat-value.success {
+  color: var(--success-color);
+}
+
+.progress-stat-value.warning {
+  color: var(--warning-color);
+}
+
+/* Progress Details Section */
+.progress-details-section {
+  background: var(--bg-primary);
+  border-radius: 16px;
+  padding: 2rem;
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border-color);
+}
+
+.progress-section-header {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 2px solid var(--border-color);
+}
+
+.progress-section-title {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin: 0;
+}
+
+.progress-section-title i {
+  color: var(--accent-color);
+  margin-right: 0.5rem;
+}
+
+/* Progress Attempts List */
+.progress-attempts-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.progress-attempt-card {
+  background: var(--bg-secondary);
+  border-radius: 12px;
+  padding: 2rem;
+  border: 1px solid var(--border-color);
+  transition: all 0.3s ease;
+}
+
+.progress-attempt-card:hover {
+  transform: translateX(4px);
+  box-shadow: var(--shadow-md);
+}
+
+.progress-attempt-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.progress-attempt-number {
+  flex: 1;
+}
+
+.attempt-badge-large {
+  background: var(--accent-color);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  font-size: 0.875rem;
+  font-weight: 700;
+  display: inline-block;
+}
+
+.progress-attempt-date {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  font-weight: 600;
+}
+
+/* Progress Score Circle */
+.progress-attempt-score-display {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.progress-score-circle {
+  position: relative;
+  width: 150px;
+  height: 150px;
+}
+
+.progress-score-circle svg {
+  width: 100%;
+  height: 100%;
+  transform: rotate(-90deg);
+}
+
+.progress-score-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+}
+
+.progress-score-number {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-primary);
+}
+
+/* Progress Details Grid */
+.progress-attempt-details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.5rem;
+}
+
+.progress-detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem;
+  background: var(--bg-primary);
+  border-radius: 8px;
+  border: 1px solid var(--border-color);
+}
+
+.progress-detail-item.full-width {
+  grid-column: 1 / -1;
+}
+
+.progress-detail-item i {
+  font-size: 1.25rem;
+  color: var(--accent-color);
+  width: 24px;
+  flex-shrink: 0;
+}
+
+.progress-detail-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25rem;
+}
+
+.progress-detail-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.progress-detail-value.success {
+  color: var(--success-color);
+}
+
+.progress-detail-value.danger {
+  color: var(--danger-color);
+}
+
+.progress-detail-value.text-capitalize {
+  text-transform: capitalize;
+}
+
+/* Responsive Design - Unified */
+@media (max-width: 1200px) {
+  .assessment-main-container {
+    padding: 0 1.5rem;
+  }
+  
+  .assessment-header {
+    padding: 2.5rem 1.5rem;
+  }
+  
+  .assessment-main-title {
+    font-size: 2.25rem;
+  }
+  
+  .assessment-stats {
+    gap: 1.5rem;
+  }
+
+  .progress-summary-grid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 992px) {
+  .assessment-header-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  
+  .assessment-stats {
+    justify-content: center;
+  }
+  
+  .assessment-main-title {
+    font-size: 2rem;
+  }
+  
+  .assessment-card {
+    padding: 1.5rem;
+  }
+  
+  .assessment-card-title {
+    font-size: 1.375rem;
+  }
+
+  .progress-summary-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .progress-stat-card {
+    padding: 1.5rem;
+  }
+
+  .progress-attempt-details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .assessment-container {
+    padding: 1rem 0;
+  }
+  
+  .assessment-main-container {
+    padding: 0 1rem;
+  }
+  
+  .assessment-header {
+    padding: 2rem 1rem;
+    margin-bottom: 2rem;
+  }
+  
+  .assessment-main-title {
+    font-size: 1.75rem;
+  }
+  
+  .assessment-subtitle {
+    font-size: 1rem;
+  }
+  
+  .assessment-stats {
+    gap: 1rem;
+  }
+  
+  .stat-item {
+    min-width: 80px;
+    padding: 0.75rem;
+  }
+  
+  .stat-number {
+    font-size: 1.5rem;
+  }
+  
+  .assessment-section-title {
+    font-size: 1.75rem;
+  }
+  
+  .assessment-card {
+    padding: 1.25rem;
+  }
+  
+  .assessment-card-icon-wrapper {
+    width: 50px;
+    height: 50px;
+  }
+  
+  .assessment-card-icon {
+    font-size: 1.25rem;
+  }
+  
+  .assessment-card-title {
+    font-size: 1.25rem;
+  }
+
+  .progress-details-section {
+    padding: 1.5rem;
+  }
+
+  .progress-attempt-card {
+    padding: 1.5rem;
+  }
+
+  .progress-score-circle {
+    width: 120px;
+    height: 120px;
+  }
+
+  .progress-score-number {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .assessment-header {
+    padding: 1.5rem 1rem;
+  }
+  
+  .assessment-main-title {
+    font-size: 1.5rem;
+  }
+  
+  .assessment-stats {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .stat-item {
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .assessment-section-header {
+    margin-bottom: 2rem;
+  }
+  
+  .assessment-section-title {
+    font-size: 1.5rem;
+  }
+  
+  .assessment-card {
+    padding: 1rem;
+  }
+  
+  .assessment-card-header {
+    margin-bottom: 1rem;
+  }
+  
+  .assessment-card-icon-wrapper {
+    width: 45px;
+    height: 45px;
+  }
+  
+  .assessment-card-icon {
+    font-size: 1.125rem;
+  }
+  
+  .assessment-card-title {
+    font-size: 1.125rem;
+  }
+  
+  .assessment-card-description {
+    font-size: 0.875rem;
+  }
+
+  .progress-stat-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.25rem;
+  }
+
+  .progress-stat-icon {
+    font-size: 2rem;
+    width: 50px;
+    height: 50px;
+  }
+
+  .progress-stat-value {
+    font-size: 1.75rem;
+  }
+
+  .progress-attempt-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .progress-details-section {
+    padding: 1rem;
+  }
+
+  .progress-attempt-card {
+    padding: 1rem;
+  }
+}
