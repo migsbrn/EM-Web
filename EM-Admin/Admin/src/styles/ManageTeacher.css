@@ -1,0 +1,1337 @@
+/* ============================================= */
+/* IMPORT FONT                                   */
+/* ============================================= */
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+
+/* ============================================= */
+/* CSS VARIABLES — matches TeacherApproval theme */
+/* ============================================= */
+:root {
+  --primary: #44c1bd;
+  --primary-dark: #33a8a4;
+  --primary-light: #e8f7f7;
+  --primary-glow: rgba(68, 193, 189, 0.18);
+  --active: #22c55e;
+  --active-dark: #16a34a;
+  --active-light: #dcfce7;
+  --active-border: #bbf7d0;
+  --inactive: #94a3b8;
+  --inactive-dark: #64748b;
+  --inactive-light: #f1f5f9;
+  --inactive-border: #cbd5e1;
+  --text-dark: #1e293b;
+  --text-mid: #475569;
+  --text-light: #94a3b8;
+  --bg: #f1f5f9;
+  --surface: #ffffff;
+  --border: #e2e8f0;
+  --border-light: #f1f5f9;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-sm: 0 1px 4px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.14);
+  --radius-xs: 6px;
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --transition: 0.18s ease;
+}
+
+/* ============================================= */
+/* GLOBAL RESET                                  */
+/* ============================================= */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family:
+    "Plus Jakarta Sans", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--bg);
+  color: var(--text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ============================================= */
+/* PAGE WRAPPER                                  */
+/* ============================================= */
+.main-teacher-management {
+  background-color: var(--bg);
+  min-height: 100vh;
+}
+
+.main-teacher-management .main-content {
+  max-width: 1400px;
+  margin: 80px auto 0;
+  padding: 20px 20px 52px;
+  width: 100%;
+}
+
+/* ============================================= */
+/* PAGE HEADER                                   */
+/* ============================================= */
+.page-header {
+  margin-bottom: 24px;
+  padding-left: 0;
+}
+
+.teacher-management-title {
+  font-size: clamp(1.4rem, 3vw, 2.5rem);
+  color: #333d47;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 1.2;
+  margin: 20px 0 4px;
+}
+
+.teacher-management-subtitle {
+  font-size: clamp(0.82rem, 1.2vw, 0.94rem);
+  color: var(--text-light);
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+
+/* ============================================= */
+/* STAT CHIPS (filter tabs above table)          */
+/* ============================================= */
+.stat-chips {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.stat-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 16px;
+  border-radius: var(--radius-xl);
+  border: 1.5px solid var(--border);
+  background: var(--surface);
+  font-size: 0.83rem;
+  font-weight: 600;
+  color: var(--text-mid);
+  cursor: pointer;
+  transition: all var(--transition);
+  white-space: nowrap;
+  box-shadow: var(--shadow-xs);
+  font-family: inherit;
+}
+
+.stat-chip .chip-count {
+  background: var(--border-light);
+  color: var(--text-mid);
+  border-radius: 20px;
+  padding: 1px 8px;
+  font-size: 0.76rem;
+  font-weight: 700;
+  transition: all var(--transition);
+}
+
+.stat-chip:hover {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  background: var(--primary-light);
+}
+
+.stat-chip.active-chip {
+  background: var(--primary);
+  border-color: var(--primary);
+  color: white;
+  box-shadow: 0 2px 10px var(--primary-glow);
+}
+
+.stat-chip.active-chip .chip-count {
+  background: rgba(255, 255, 255, 0.25);
+  color: white;
+}
+
+/* ============================================= */
+/* CONTROLS BAR                                  */
+/* ============================================= */
+.teacher-controls-manage {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  /* NO flex-wrap: the search grows, dropdown stays fixed */
+}
+
+/* Search input — grows to fill available space */
+.teacher-controls-manage input[type="text"],
+.teacher-approval-search-bar {
+  flex: 1 1 0;
+  min-width: 0;
+  padding: 10px 16px 10px 40px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  font-size: 0.9rem;
+  font-family: inherit;
+  background-color: var(--surface);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%2394a3b8' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'%3E%3C/circle%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'%3E%3C/line%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: 13px center;
+  color: var(--text-dark);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.teacher-controls-manage input[type="text"]::placeholder,
+.teacher-approval-search-bar::placeholder {
+  color: var(--text-light);
+}
+
+.teacher-controls-manage input[type="text"]:focus,
+.teacher-approval-search-bar:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* Filter dropdown — fixed width, never grows */
+.filter-dropdown {
+  flex: 0 0 auto;
+  padding: 10px 36px 10px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-xl);
+  font-size: 0.9rem;
+  font-family: inherit;
+  background-color: var(--surface);
+  color: var(--text-dark);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  min-width: 148px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2394a3b8%22%20d%3D%22M287%20197.9c4.7%204.7%204.7%2012.3%200%2017l-133.3%20133.3c-4.7%204.7-12.3%204.7-17%200L5.4%20214.9c-4.7-4.7-4.7-12.3%200-17l17-17c4.7-4.7%2012.3-4.7%2017%200l104.9%20104.9L253%20180.9c4.7-4.7%2012.3-4.7%2017%200l17%2017z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  background-size: 10px;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.filter-dropdown:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+
+/* ============================================= */
+/* ERROR STATE                                   */
+/* ============================================= */
+.error {
+  color: #dc2626;
+  background-color: #fee2e2;
+  padding: 12px 16px;
+  border-radius: var(--radius-sm);
+  border: 1px solid #fecaca;
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+/* ============================================= */
+/* TABLE CARD CONTAINER                          */
+/* ============================================= */
+.teacher-table-container {
+  background-color: var(--surface);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  border: 1px solid var(--border);
+  overflow: hidden; /* clip rounded corners */
+  width: 100%;
+  transition: box-shadow var(--transition);
+}
+
+/* Filter-based theme accents */
+.teacher-table-container[data-filter="Active"] {
+  border-color: rgba(68, 193, 189, 0.3);
+  box-shadow: 0 4px 16px rgba(68, 193, 189, 0.1);
+}
+.teacher-table-container[data-filter="Inactive"] {
+  border-color: rgba(148, 163, 184, 0.3);
+  box-shadow: 0 4px 16px rgba(100, 116, 139, 0.08);
+}
+
+.teacher-table-container > p {
+  padding: 36px;
+  text-align: center;
+  color: var(--text-light);
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* ============================================= */
+/* DESKTOP TABLE (≥769px)                        */
+/* ============================================= */
+.teacher-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.teacher-table thead tr {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+.teacher-table-container[data-filter="Active"] .teacher-table thead tr {
+  background: linear-gradient(135deg, #e8f7f7, #d0f0ee);
+}
+.teacher-table-container[data-filter="Inactive"] .teacher-table thead tr {
+  background: linear-gradient(135deg, #f5f7f9, #edf0f3);
+}
+
+.teacher-table th {
+  padding: 13px 15px;
+  text-align: left;
+  font-size: 0.71rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--text-mid);
+  white-space: nowrap;
+  border-bottom: 2px solid var(--border);
+}
+
+.teacher-table-container[data-filter="Active"] .teacher-table th {
+  color: var(--primary-dark);
+  border-bottom-color: rgba(68, 193, 189, 0.3);
+}
+.teacher-table-container[data-filter="Inactive"] .teacher-table th {
+  color: var(--inactive-dark);
+  border-bottom-color: rgba(148, 163, 184, 0.3);
+}
+
+.teacher-table td {
+  padding: 13px 15px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  color: var(--text-dark);
+  vertical-align: middle;
+}
+
+.teacher-table tbody tr:nth-child(even) {
+  background-color: #fafcff;
+}
+.teacher-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.teacher-table tbody tr:hover {
+  background-color: var(--primary-light);
+}
+.teacher-table tbody tr.is-updating {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.teacher-table-container[data-filter="Active"] .teacher-table tbody tr:hover {
+  background-color: #e6f7f7;
+}
+.teacher-table-container[data-filter="Inactive"] .teacher-table tbody tr:hover {
+  background-color: #f0f3f7;
+}
+
+/* Column sizing — fluid on all desktop widths.
+   Hard min-widths removed: they caused columns to
+   overflow at mid-range viewport widths (800–1100px).
+   The responsive breakpoints below handle tightening. */
+.teacher-table td:nth-child(1) {
+  word-break: break-word;
+  white-space: normal;
+}
+.teacher-table td:nth-child(2) {
+  word-break: break-all;
+  white-space: normal;
+  font-size: 0.84rem;
+}
+.teacher-table td:nth-child(3) {
+  white-space: nowrap;
+}
+.teacher-table td:nth-child(4) {
+  white-space: nowrap;
+}
+
+/* ============================================= */
+/* STATUS PILLS                                  */
+/* ============================================= */
+.status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.status-pill::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-pill.active {
+  background-color: var(--active-light);
+  color: var(--active-dark);
+  border: 1px solid var(--active-border);
+}
+.status-pill.active::before {
+  background-color: var(--active);
+}
+
+.status-pill.inactive {
+  background-color: var(--inactive-light);
+  color: var(--inactive-dark);
+  border: 1px solid var(--inactive-border);
+}
+.status-pill.inactive::before {
+  background-color: var(--inactive);
+}
+
+/* ============================================= */
+/* ACTIONS DROPDOWN                              */
+/* ============================================= */
+.teacher-actions-select {
+  padding: 7px 28px 7px 12px;
+  border-radius: var(--radius-xs);
+  border: 1.5px solid var(--border);
+  background-color: var(--surface);
+  font-size: 0.82rem;
+  font-family: inherit;
+  color: var(--text-dark);
+  cursor: pointer;
+  width: 100%; /* fills its table cell */
+  min-width: unset; /* removed: was forcing column overflow */
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22292.4%22%20height%3D%22292.4%22%3E%3Cpath%20fill%3D%22%2394a3b8%22%20d%3D%22M287%20197.9c4.7%204.7%204.7%2012.3%200%2017l-133.3%20133.3c-4.7%204.7-12.3%204.7-17%200L5.4%20214.9c-4.7-4.7-4.7-12.3%200-17l17-17c4.7-4.7%2012.3-4.7%2017%200l104.9%20104.9L253%20180.9c4.7-4.7%2012.3-4.7%2017%200l17%2017z%22%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  background-size: 9px;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+.teacher-actions-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px var(--primary-glow);
+}
+.teacher-actions-select:hover {
+  border-color: var(--primary);
+}
+
+/* ============================================= */
+/* DETAILS BUTTON                                */
+/* ============================================= */
+.more-button {
+  padding: 7px 14px;
+  background-color: var(--primary-light);
+  color: var(--primary-dark);
+  border: 1px solid rgba(68, 193, 189, 0.3);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 0.81rem;
+  font-family: inherit;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all var(--transition);
+  white-space: nowrap;
+}
+.more-button:hover {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  box-shadow: 0 2px 8px var(--primary-glow);
+  transform: translateY(-1px);
+}
+.more-button:active {
+  transform: translateY(0);
+}
+
+.teacher-table-container[data-filter="Inactive"] .more-button {
+  background-color: var(--inactive-light);
+  color: var(--inactive-dark);
+  border-color: var(--inactive-border);
+}
+.teacher-table-container[data-filter="Inactive"] .more-button:hover {
+  background-color: var(--inactive);
+  color: white;
+  border-color: var(--inactive);
+}
+
+/* ============================================= */
+/* PAGINATION                                    */
+/* ============================================= */
+.pagination-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 18px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  background: linear-gradient(180deg, #fafcff 0%, var(--surface) 100%);
+}
+
+.pagination-controls > span {
+  margin-right: auto;
+  font-size: 0.82rem;
+  color: var(--text-light);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pagination-controls button {
+  padding: 6px 12px;
+  border: 1.5px solid var(--border);
+  background-color: var(--surface);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition: all var(--transition);
+  min-width: 34px;
+}
+
+.pagination-controls button:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
+}
+
+.pagination-controls button:disabled {
+  cursor: not-allowed;
+  opacity: 0.4;
+}
+
+.pagination-controls button.active-page {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  font-weight: 700;
+  box-shadow: 0 2px 6px var(--primary-glow);
+}
+
+/* ============================================= */
+/* MOBILE CARD LAYOUT — replaces table on phones */
+/* Visible only at ≤640px; table hidden          */
+/* ============================================= */
+.teacher-card-list {
+  display: none; /* hidden on desktop — shown at ≤640px */
+}
+
+/* ============================================= */
+/* MODALS                                        */
+/* ============================================= */
+@keyframes fadeInModal {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes popInModal {
+  from {
+    transform: scale(0.95) translateY(10px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideUpModal {
+  from {
+    transform: translateY(48px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.58);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 18px;
+  animation: fadeInModal 0.22s ease;
+}
+
+.modal-content {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  max-width: 700px;
+  width: 100%;
+  max-height: 88vh;
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+  overflow: hidden;
+  animation: popInModal 0.26s cubic-bezier(0.34, 1.5, 0.64, 1);
+}
+
+.modal-header {
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  padding: 18px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.modal-header h2 {
+  margin: 0;
+  font-size: clamp(0.95rem, 2vw, 1.2rem);
+  font-weight: 700;
+  color: white;
+  word-break: break-word;
+  line-height: 1.3;
+}
+
+.close-icon {
+  font-size: 1.55rem;
+  line-height: 1;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.8);
+  margin-left: 14px;
+  flex-shrink: 0;
+  transition:
+    color var(--transition),
+    transform 0.2s ease;
+}
+.close-icon:hover {
+  color: white;
+  transform: rotate(90deg);
+}
+
+.modal-body {
+  padding: 22px;
+  flex: 1;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Info grid — 2 column on desktop, 1 on mobile */
+.teacher-info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.info-card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 16px;
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--transition),
+    transform 0.2s ease;
+}
+.info-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.card-header {
+  font-size: 0.74rem;
+  color: var(--primary-dark);
+  border-bottom: 1.5px solid var(--primary-light);
+  padding-bottom: 8px;
+  margin-bottom: 12px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.card-content {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+}
+
+.card-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 5px 0;
+  border-bottom: 1px dashed #e8ecf0;
+}
+.card-item:last-child {
+  border-bottom: none;
+  padding-bottom: 0;
+}
+
+.item-label {
+  font-weight: 600;
+  font-size: 0.78rem;
+  color: var(--text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  flex-shrink: 0;
+  min-width: 90px;
+  line-height: 1.5;
+}
+
+.item-value {
+  color: var(--text-dark);
+  font-size: 0.87rem;
+  text-align: right;
+  word-break: break-word;
+  flex: 1;
+  line-height: 1.5;
+}
+.item-value.highlight {
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.system-info-card {
+  background: linear-gradient(135deg, #f0fffe, #e8f7f7);
+  border-color: rgba(68, 193, 189, 0.2);
+}
+.system-info-card .card-header {
+  color: #5b8f8e;
+  border-bottom-color: rgba(68, 193, 189, 0.2);
+}
+
+/* ============================================= */
+/* CONFIRMATION MODAL                            */
+/* ============================================= */
+.modal-body > p {
+  font-size: 0.95rem;
+  color: var(--text-mid);
+  line-height: 1.6;
+  margin-bottom: 4px;
+}
+
+.confirmation-buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 22px;
+  flex-wrap: wrap;
+}
+
+.confirm-btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  border: none;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  color: white;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.9rem;
+  font-family: inherit;
+  transition: all var(--transition);
+  box-shadow: 0 2px 8px var(--primary-glow);
+}
+.confirm-btn:hover {
+  box-shadow: 0 4px 14px var(--primary-glow);
+  transform: translateY(-1px);
+}
+
+.cancel-btn {
+  padding: 9px 20px;
+  border-radius: var(--radius-sm);
+  border: 1.5px solid var(--border);
+  background-color: var(--bg);
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  font-family: inherit;
+  color: var(--text-mid);
+  transition: all var(--transition);
+}
+.cancel-btn:hover {
+  background-color: var(--border);
+}
+
+/* ============================================= */
+/* RESPONSIVE — LARGE DESKTOP NARROW (≤1100px) */
+/* Table stays as a table; columns tighten up   */
+/* ============================================= */
+@media screen and (max-width: 1100px) {
+  .main-teacher-management .main-content {
+    padding: 18px 18px 36px;
+  }
+
+  /* Switch to fixed layout so % widths are honoured */
+  .teacher-table {
+    table-layout: fixed;
+    width: 100%;
+  }
+
+  /* Distribute columns proportionally across the full width.
+     Total = 100%:  Name 18 | Email 25 | Login 13 | Status 11 | Actions 22 | Details 11 */
+  .teacher-table th:nth-child(1),
+  .teacher-table td:nth-child(1) {
+    width: 18%;
+  }
+
+  .teacher-table th:nth-child(2),
+  .teacher-table td:nth-child(2) {
+    width: 25%;
+  }
+
+  .teacher-table th:nth-child(3),
+  .teacher-table td:nth-child(3) {
+    width: 13%;
+  }
+
+  .teacher-table th:nth-child(4),
+  .teacher-table td:nth-child(4) {
+    width: 11%;
+  }
+
+  .teacher-table th:nth-child(5),
+  .teacher-table td:nth-child(5) {
+    width: 22%;
+  }
+
+  .teacher-table th:nth-child(6),
+  .teacher-table td:nth-child(6) {
+    width: 11%;
+  }
+
+  /* Cancel the min-widths that were causing overflow */
+  .teacher-table td:nth-child(1),
+  .teacher-table td:nth-child(2),
+  .teacher-table td:nth-child(5),
+  .teacher-table td:nth-child(6) {
+    min-width: unset;
+  }
+
+  /* Tighten padding and scale text down slightly */
+  .teacher-table th,
+  .teacher-table td {
+    padding: 11px 10px;
+    font-size: 0.84rem;
+  }
+
+  /* Name: allow wrapping within its column */
+  .teacher-table td:nth-child(1) {
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  /* Email: wrap long addresses */
+  .teacher-table td:nth-child(2) {
+    word-break: break-all;
+    white-space: normal;
+    font-size: 0.81rem;
+  }
+
+  /* Actions dropdown fills its column exactly — no fixed min-width */
+  .teacher-actions-select {
+    width: 100%;
+    min-width: unset;
+    font-size: 0.79rem;
+    padding: 6px 22px 6px 8px;
+  }
+
+  /* Details button fills its column */
+  .more-button {
+    width: 100%;
+    justify-content: center;
+    font-size: 0.79rem;
+    padding: 6px 8px;
+  }
+}
+
+/* ============================================= */
+/* RESPONSIVE — MID DESKTOP (≤960px)            */
+/* Actions + Details stack inside the cell so    */
+/* the table never needs horizontal scroll       */
+/* ============================================= */
+@media screen and (max-width: 960px) {
+  /* Redistribute: collapse Actions + Details into one merged-width column,
+     give recovered space to Name and Email.
+     Name 20 | Email 27 | Login 14 | Status 12 | Actions 16 | Details 11  */
+  .teacher-table th:nth-child(1),
+  .teacher-table td:nth-child(1) {
+    width: 20%;
+  }
+
+  .teacher-table th:nth-child(2),
+  .teacher-table td:nth-child(2) {
+    width: 26%;
+  }
+
+  .teacher-table th:nth-child(3),
+  .teacher-table td:nth-child(3) {
+    width: 14%;
+  }
+
+  .teacher-table th:nth-child(4),
+  .teacher-table td:nth-child(4) {
+    width: 12%;
+  }
+
+  .teacher-table th:nth-child(5),
+  .teacher-table td:nth-child(5) {
+    width: 17%;
+  }
+
+  .teacher-table th:nth-child(6),
+  .teacher-table td:nth-child(6) {
+    width: 11%;
+  }
+
+  .teacher-table th,
+  .teacher-table td {
+    padding: 10px 8px;
+    font-size: 0.81rem;
+  }
+
+  .teacher-table td:nth-child(2) {
+    font-size: 0.78rem;
+  }
+
+  .teacher-actions-select {
+    font-size: 0.76rem;
+    padding: 5px 18px 5px 7px;
+  }
+
+  .more-button {
+    font-size: 0.76rem;
+    padding: 5px 6px;
+  }
+
+  /* Status pill slightly smaller */
+  .status-pill {
+    font-size: 0.72rem;
+    padding: 3px 8px;
+  }
+  .status-pill::before {
+    width: 5px;
+    height: 5px;
+  }
+}
+
+/* ============================================= */
+/* RESPONSIVE — SMALL DESKTOP / LARGE TABLET     */
+/* (769px – 840px)                               */
+/* At this range the 6-column table is very      */
+/* cramped. Stack Actions + Details vertically   */
+/* inside a single combined cell via a flex col  */
+/* ============================================= */
+@media screen and (min-width: 769px) and (max-width: 840px) {
+  .main-teacher-management .main-content {
+    padding: 14px 12px 28px;
+  }
+
+  /* 5 visible column widths: merge Actions+Details visually
+     Name 22 | Email 27 | Login 15 | Status 12 | Actions+Details 24 */
+  .teacher-table th:nth-child(1),
+  .teacher-table td:nth-child(1) {
+    width: 22%;
+  }
+
+  .teacher-table th:nth-child(2),
+  .teacher-table td:nth-child(2) {
+    width: 27%;
+  }
+
+  .teacher-table th:nth-child(3),
+  .teacher-table td:nth-child(3) {
+    width: 15%;
+  }
+
+  .teacher-table th:nth-child(4),
+  .teacher-table td:nth-child(4) {
+    width: 12%;
+  }
+
+  /* Actions column gets extra width; Details shrinks to minimum */
+  .teacher-table th:nth-child(5),
+  .teacher-table td:nth-child(5) {
+    width: 15%;
+  }
+
+  .teacher-table th:nth-child(6),
+  .teacher-table td:nth-child(6) {
+    width: 9%;
+  }
+
+  .teacher-table th,
+  .teacher-table td {
+    padding: 9px 7px;
+    font-size: 0.78rem;
+  }
+
+  .teacher-table td:nth-child(2) {
+    font-size: 0.74rem;
+  }
+
+  /* Actions dropdown: very compact */
+  .teacher-actions-select {
+    font-size: 0.73rem;
+    padding: 5px 16px 5px 6px;
+    background-position: right 5px center;
+    background-size: 7px;
+  }
+
+  /* Details button: icon-only label at this width */
+  .more-button {
+    font-size: 0.73rem;
+    padding: 5px 5px;
+    gap: 3px;
+  }
+
+  .status-pill {
+    font-size: 0.7rem;
+    padding: 3px 7px;
+    gap: 3px;
+  }
+  .status-pill::before {
+    width: 5px;
+    height: 5px;
+  }
+
+  /* Controls: keep one row — search compresses, dropdown stays */
+  .teacher-controls-manage {
+    gap: 8px;
+  }
+  .teacher-controls-manage input[type="text"],
+  .teacher-approval-search-bar {
+    font-size: 0.85rem;
+    padding: 9px 12px 9px 34px;
+  }
+  .filter-dropdown {
+    min-width: 120px;
+    font-size: 0.85rem;
+  }
+}
+
+/* ============================================= */
+/* RESPONSIVE — TABLET PORTRAIT (≤768px) — merged into card-switch block above */
+/* ============================================= */
+
+/* ============================================= */
+/* RESPONSIVE — SMALL PHONES (≤768px)           */
+/* TABLE → CARD LAYOUT SWITCH                    */
+/* ============================================= */
+@media screen and (max-width: 768px) {
+  .main-teacher-management .main-content {
+    padding: 12px 12px 28px;
+    margin-top: 60px;
+  }
+
+  .teacher-management-title {
+    margin: 12px 0 4px;
+  }
+
+  /* Controls: still one row — search grows, dropdown stays */
+  .teacher-controls-manage {
+    gap: 8px;
+  }
+  .teacher-controls-manage input[type="text"],
+  .teacher-approval-search-bar {
+    font-size: 0.85rem;
+    padding: 9px 14px 9px 36px;
+  }
+  .filter-dropdown {
+    font-size: 0.85rem;
+    padding: 9px 30px 9px 13px;
+    min-width: 130px;
+  }
+
+  /* HIDE the desktop table and desktop pagination */
+  .teacher-table-container .teacher-table,
+  .teacher-table-container .pagination-controls {
+    display: none;
+  }
+
+  /* SHOW the card list */
+  .teacher-card-list {
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Stat chips scroll horizontally */
+  .stat-chips {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+  }
+  .stat-chip {
+    flex-shrink: 0;
+  }
+
+  /* Modal: bottom sheet */
+  .modal {
+    padding: 0;
+    align-items: flex-end;
+  }
+  .modal-content {
+    width: 100%;
+    max-width: 100%;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    max-height: 91vh;
+    animation: slideUpModal 0.28s cubic-bezier(0.34, 1.2, 0.64, 1);
+  }
+  .modal-header {
+    padding: 16px 18px;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+  .modal-body {
+    padding: 16px 18px;
+  }
+
+  .teacher-info-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* Confirmation buttons stacked */
+  .confirmation-buttons {
+    flex-direction: column-reverse;
+  }
+  .confirm-btn,
+  .cancel-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Pagination: wraps gracefully */
+  .pagination-controls {
+    justify-content: center;
+  }
+  .pagination-controls > span {
+    width: 100%;
+    text-align: center;
+    margin-right: 0;
+    margin-bottom: 8px;
+  }
+}
+
+/* Individual teacher card (mobile) */
+.teacher-card {
+  padding: 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  transition: background-color var(--transition);
+}
+.teacher-card:last-child {
+  border-bottom: none;
+}
+.teacher-card:hover {
+  background-color: var(--primary-light);
+}
+
+.teacher-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.teacher-card-name {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text-dark);
+  line-height: 1.3;
+  flex: 1;
+}
+
+.teacher-card-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 0.82rem;
+  color: var(--text-mid);
+}
+
+.teacher-card-meta span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.teacher-card-meta .meta-label {
+  color: var(--text-light);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-weight: 600;
+}
+
+.teacher-card-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.teacher-card-actions .teacher-actions-select {
+  flex: 1;
+  min-width: 0;
+}
+.teacher-card-actions .more-button {
+  flex-shrink: 0;
+}
+
+/* Mobile pagination (shown at ≤640px) */
+.teacher-card-pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 14px 16px;
+  border-top: 1px solid var(--border);
+  flex-wrap: wrap;
+  background: linear-gradient(180deg, #fafcff 0%, var(--surface) 100%);
+}
+
+.teacher-card-pagination > span {
+  width: 100%;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-light);
+  font-weight: 500;
+  margin-bottom: 4px;
+}
+
+.teacher-card-pagination button {
+  padding: 6px 12px;
+  border: 1.5px solid var(--border);
+  background-color: var(--surface);
+  border-radius: var(--radius-xs);
+  cursor: pointer;
+  font-size: 0.82rem;
+  font-family: inherit;
+  font-weight: 500;
+  color: var(--text-mid);
+  transition: all var(--transition);
+  min-width: 34px;
+}
+.teacher-card-pagination button:hover:not(:disabled) {
+  border-color: var(--primary);
+  color: var(--primary-dark);
+  background-color: var(--primary-light);
+}
+.teacher-card-pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+.teacher-card-pagination button.active-page {
+  background-color: var(--primary);
+  color: white;
+  border-color: var(--primary);
+  font-weight: 700;
+}
+
+/* ============================================= */
+/* RESPONSIVE — VERY SMALL (≤420px)             */
+/* ============================================= */
+@media screen and (max-width: 420px) {
+  .main-teacher-management .main-content {
+    padding: 8px 10px 28px;
+    margin-top: 56px;
+  }
+
+  .teacher-management-title {
+    font-size: 1.3rem;
+    margin: 10px 0 4px;
+  }
+
+  /* Stack controls at this size */
+  .teacher-controls-manage {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .teacher-controls-manage input[type="text"],
+  .teacher-approval-search-bar {
+    width: 100%;
+  }
+  .filter-dropdown {
+    width: 100%;
+  }
+
+  .teacher-card-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .teacher-card-actions .teacher-actions-select {
+    width: 100%;
+  }
+  .teacher-card-actions .more-button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* Confirmation modal buttons stay stacked */
+  .confirmation-buttons {
+    flex-direction: column-reverse;
+  }
+  .confirm-btn,
+  .cancel-btn {
+    width: 100%;
+    text-align: center;
+  }
+
+  /* Info card items stack vertically */
+  .card-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+  }
+  .item-label,
+  .item-value {
+    text-align: left;
+    flex: unset;
+    width: 100%;
+  }
+}
+
+/* ============================================= */
+/* RESPONSIVE — TINY (≤360px)                   */
+/* ============================================= */
+@media screen and (max-width: 360px) {
+  .teacher-management-title {
+    font-size: 1.2rem;
+  }
+  .modal-header h2 {
+    font-size: 0.88rem;
+  }
+  .close-icon {
+    font-size: 1.35rem;
+  }
+  .stat-chip {
+    font-size: 0.76rem;
+    padding: 6px 12px;
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "projects": {
+    "firebase deploy": "easy-mind-51834",
+    "default": "easy-mind-51834"
+  },
+  "targets": {
+    "easy-mind-51834": {
+      "hosting": {
+        "admin": [
+          "easymind-admin-51834"
+        ]
+      }
+    }
+  },
+  "etags": {}
+}

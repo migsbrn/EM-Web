@@ -1,0 +1,1023 @@
+/* ============================================================
+   ReportLogs.css — Fully Responsive & Modern Activity Logs UI
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap");
+
+/* ── Design Tokens ── */
+:root {
+  --bg: #eef2f7;
+  --card: #ffffff;
+  --border: #e4eaf2;
+  --text: #0f172a;
+  --muted: #64748b;
+  --teal: #3ecfbb;
+  --teal-dk: #2aa898;
+  --teal-lt: #e6faf8;
+  --amber: #f59e0b;
+  --blue: #3b82f6;
+  --green: #22c55e;
+  --red: #ef4444;
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 6px 24px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.1);
+  --radius: 16px;
+  --radius-sm: 10px;
+  --radius-pill: 999px;
+  --font: "Sora", sans-serif;
+  --mono: "JetBrains Mono", monospace;
+  --ease: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ════════════════════════════════════════
+   ROOT & CONTAINER
+   ════════════════════════════════════════ */
+.report-logs-root {
+  padding: 0 20px 60px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+.report-logs-container {
+  max-width: 1320px;
+  margin: 0 auto;
+  padding-top: 20px;
+}
+
+/* ════════════════════════════════════════
+   HERO (title + controls)
+   ════════════════════════════════════════ */
+.report-hero {
+  display: flex;
+  gap: 20px;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  /* NO flex-wrap — controls must never drop to a new row on desktop/laptop */
+  flex-wrap: nowrap;
+}
+
+.report-title {
+  flex-shrink: 0; /* Title never shrinks — it dictates its own space */
+}
+
+.report-logs-title {
+  font-size: clamp(1.5rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.6px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.report-sub {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 400;
+  line-height: 1.4;
+}
+
+/* Hero actions row */
+.hero-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-shrink: 1;
+  min-width: 0;
+  justify-content: flex-end;
+}
+
+/* Search */
+.search-wrap {
+  display: flex;
+  align-items: center;
+  background: var(--card);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  padding: 0 16px;
+  height: 44px;
+  min-width: 260px;
+  flex: 1 1 220px;
+  max-width: 380px;
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--ease),
+    box-shadow var(--ease);
+}
+
+.search-wrap:focus-within {
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(62, 207, 187, 0.15);
+}
+
+.search-icon {
+  color: var(--muted);
+  font-size: 1rem;
+  flex-shrink: 0;
+  margin-right: 10px;
+}
+
+.report-controls-input {
+  border: none;
+  outline: none;
+  font-size: 0.88rem;
+  font-family: var(--font);
+  width: 100%;
+  background: transparent;
+  color: var(--text);
+}
+
+.report-controls-input::placeholder {
+  color: var(--muted);
+}
+
+/* Selects + button row */
+.select-wrap {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.report-controls-select {
+  height: 44px;
+  padding: 0 36px 0 14px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  background: var(--card);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width%3D'12' height%3D'12' viewBox%3D'0 0 12 12'%3E%3Cpath fill%3D'%2364748b' d%3D'M6 8L1 3h10z'%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  appearance: none;
+  font-size: 0.86rem;
+  font-family: var(--font);
+  color: var(--text);
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--ease),
+    box-shadow var(--ease);
+  min-width: 130px;
+}
+
+.report-controls-select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(62, 207, 187, 0.15);
+}
+
+.report-controls-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 20px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dk) 100%);
+  color: #fff;
+  font-size: 0.86rem;
+  font-weight: 700;
+  font-family: var(--font);
+  cursor: pointer;
+  box-shadow: 0 4px 16px rgba(62, 207, 187, 0.35);
+  transition:
+    transform var(--ease),
+    box-shadow var(--ease);
+  white-space: nowrap;
+}
+
+.report-controls-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(62, 207, 187, 0.45);
+}
+
+.report-controls-button:active {
+  transform: translateY(0);
+}
+
+/* ════════════════════════════════════════
+   KPI SUMMARY CARDS
+   ════════════════════════════════════════ */
+.logs-summary-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+.kpi-card {
+  background: var(--card);
+  border-radius: var(--radius);
+  padding: 22px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-sm);
+  transition:
+    transform var(--ease),
+    box-shadow var(--ease);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Decorative accent line on the left */
+.kpi-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 4px 0 0 4px;
+}
+
+.kpi-card:nth-child(1)::before {
+  background: #648ba2;
+}
+.kpi-card:nth-child(2)::before {
+  background: var(--amber);
+}
+.kpi-card:nth-child(3)::before {
+  background: #7ca1cc;
+}
+
+.kpi-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-content {
+  flex: 1;
+  min-width: 0;
+}
+
+.card-label {
+  font-size: 0.74rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.card-value {
+  font-size: 2rem;
+  font-weight: 800;
+  font-family: var(--mono);
+  line-height: 1;
+}
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.35rem;
+  flex-shrink: 0;
+}
+
+.card-icon-1 {
+  background: linear-gradient(135deg, #648ba2, #4a7a94);
+}
+.card-icon-2 {
+  background: linear-gradient(135deg, #f59e0b, #d97706);
+}
+.card-icon-4 {
+  background: linear-gradient(135deg, #7ca1cc, #5b8ab8);
+}
+
+/* ════════════════════════════════════════
+   ALERTS
+   ════════════════════════════════════════ */
+.alert {
+  background: #fff5f5;
+  border-left: 4px solid var(--red);
+  padding: 12px 16px;
+  color: #7a1e1e;
+  border-radius: var(--radius-sm);
+  margin-bottom: 16px;
+  font-size: 0.9rem;
+}
+
+/* ════════════════════════════════════════
+   TABLE CONTAINER
+   ════════════════════════════════════════ */
+.report-table-wrapper {
+  margin-top: 0;
+}
+
+.report-table-container {
+  background: var(--card);
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+
+/* ── Desktop Table ── */
+.report-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.report-table thead {
+  background: linear-gradient(180deg, #f8fbfb 0%, #eef6f5 100%);
+  border-bottom: 2px solid var(--border);
+}
+
+.report-table thead th {
+  padding: 14px 18px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.report-table tbody td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.88rem;
+  vertical-align: middle;
+  color: var(--text);
+}
+
+.report-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.report-table tbody tr {
+  transition: background var(--ease);
+}
+
+.report-table tbody tr:hover {
+  background: #f8fffe;
+}
+
+/* Column widths */
+.th-datetime,
+.cell-datetime {
+  width: 26%;
+}
+.th-teacher,
+.cell-teacher {
+  width: 22%;
+  font-weight: 600;
+}
+.th-activity,
+.cell-activity {
+  width: 52%;
+}
+
+/* ── Mobile Card List (hidden on desktop) ── */
+.rl-card-list {
+  display: none;
+}
+
+.rl-log-card {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 18px;
+  transition: background var(--ease);
+}
+
+.rl-log-card:last-child {
+  border-bottom: none;
+}
+.rl-log-card:hover {
+  background: #f8fffe;
+}
+
+.rl-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.rl-card-teacher {
+  font-weight: 700;
+  font-size: 0.95rem;
+  color: var(--text);
+}
+
+.rl-card-time {
+  font-size: 0.75rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  white-space: nowrap;
+  text-align: right;
+}
+
+.rl-card-time .rl-card-date {
+  display: block;
+  font-size: 0.7rem;
+  margin-top: 2px;
+  opacity: 0.75;
+}
+
+.rl-card-activity {
+  margin-top: 4px;
+}
+
+/* ════════════════════════════════════════
+   ACTIVITY BADGES
+   ════════════════════════════════════════ */
+.activity-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border-radius: var(--radius-pill);
+  font-weight: 600;
+  font-size: 0.82rem;
+  max-width: 100%;
+}
+
+.activity-text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: normal;
+  word-break: break-word;
+  line-height: 1.35;
+}
+
+.activity-icon {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+}
+
+/* Badge variants */
+.log-in {
+  background: rgba(59, 130, 246, 0.1);
+  color: #1d4ed8;
+}
+.log-out {
+  background: rgba(239, 68, 68, 0.1);
+  color: #b91c1c;
+}
+.log-assessment {
+  background: rgba(34, 197, 94, 0.1);
+  color: #15803d;
+}
+.log-update {
+  background: rgba(245, 158, 11, 0.1);
+  color: #92400e;
+}
+.log-delete {
+  background: rgba(239, 68, 68, 0.1);
+  color: #991b1b;
+}
+.log-default {
+  background: rgba(100, 116, 139, 0.09);
+  color: #334155;
+}
+
+/* ════════════════════════════════════════
+   EMPTY STATE
+   ════════════════════════════════════════ */
+.empty-state {
+  text-align: center;
+  padding: 52px 16px;
+  color: var(--muted);
+}
+
+.empty-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.empty-emoji {
+  font-size: 2.4rem;
+}
+
+/* ════════════════════════════════════════
+   PAGINATION
+   ════════════════════════════════════════ */
+.pagination {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 18px;
+  border-top: 1px solid var(--border);
+  background: #fafbfc;
+  flex-wrap: wrap;
+}
+
+.pagination button {
+  height: 34px;
+  min-width: 34px;
+  padding: 0 12px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.84rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all var(--ease);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pagination button:hover:not(:disabled) {
+  border-color: var(--teal);
+  color: var(--teal-dk);
+  background: var(--teal-lt);
+}
+
+.pagination button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pagination button.active-page {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(62, 207, 187, 0.35);
+}
+
+.pagination span {
+  font-size: 0.82rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  white-space: nowrap;
+}
+
+/* ════════════════════════════════════════
+   DATETIME CELL
+   ════════════════════════════════════════ */
+.cell-datetime .relative-time {
+  font-weight: 600;
+  font-size: 0.87rem;
+  color: var(--text);
+}
+
+.cell-datetime .absolute-time {
+  font-size: 0.75rem;
+  color: var(--muted);
+  margin-top: 2px;
+  font-family: var(--mono);
+}
+
+/* ════════════════════════════════════════
+   PRINT STYLES
+   ════════════════════════════════════════ */
+
+/* Hidden on screen — revealed only in print */
+.print-only-header {
+  display: none;
+}
+
+@media print {
+  /* ── 1. Force color rendering ── */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+  }
+
+  :root {
+    color-scheme: light;
+  }
+
+  /* ── 2. Page setup ── */
+  @page {
+    size: A4 landscape;
+    margin: 14mm 16mm 14mm 16mm;
+  }
+
+  /* ── 3. Hide all non-essential UI ── */
+  /*   Covers: navbar, sidebar, hero controls, KPI cards,
+       mobile card list, pagination, error alerts,
+       relative timestamps ("X ago"), badge icons         */
+  .no-print,
+  .report-hero,
+  .logs-summary-cards,
+  .pagination,
+  .rl-card-list,
+  .alert,
+  .relative-time,
+  .activity-icon,
+  /* Bootstrap / app shell */
+  .admin-navbar,
+  nav.navbar,
+  header,
+  aside,
+  .sidebar {
+    display: none !important;
+  }
+
+  /* ── 4. Root & container — full-width, no chrome ── */
+  html,
+  body {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: #fff !important;
+    color: #000 !important;
+    font-family: "Sora", "Segoe UI", Arial, sans-serif;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .report-logs-root {
+    padding: 0 !important;
+    min-height: unset;
+    background: #fff !important;
+  }
+
+  .report-logs-container {
+    max-width: 100% !important;
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* ── 5. Print-only header (report title + generated date) ── */
+  .print-only-header {
+    display: block !important;
+    margin-bottom: 18pt;
+    padding-bottom: 10pt;
+    border-bottom: 2px solid #3d5d53;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print-only-header h1 {
+    font-size: 18pt;
+    font-weight: 800;
+    color: #1a2e28 !important;
+    letter-spacing: -0.3px;
+    margin: 0 0 4pt;
+    line-height: 1.2;
+  }
+
+  .print-only-header p {
+    font-size: 9pt;
+    color: #555 !important;
+    margin: 0;
+    font-style: italic;
+  }
+
+  /* ── 6. Table wrapper — no decoration ── */
+  .report-table-wrapper {
+    margin-top: 0;
+  }
+
+  .report-table-container {
+    background: #fff !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    overflow: visible !important;
+    padding: 0 !important;
+  }
+
+  /* ── 7. Table layout & sizing ── */
+  .report-table {
+    width: 100% !important;
+    min-width: unset !important;
+    border-collapse: collapse !important;
+    table-layout: fixed;
+    font-size: 10pt;
+    color: #000 !important;
+  }
+
+  /* Column proportions: DateTime | Teacher | Activity */
+  .th-datetime,
+  .cell-datetime {
+    width: 22% !important;
+  }
+
+  .th-teacher,
+  .cell-teacher {
+    width: 20% !important;
+  }
+
+  .th-activity,
+  .cell-activity {
+    width: 58% !important;
+  }
+
+  /* ── 8. Table header — repeats on every page ── */
+  .report-table thead {
+    display: table-header-group; /* forces repeat on page breaks */
+    background: #e8f0ed !important;
+    border-bottom: 2px solid #3d5d53 !important;
+  }
+
+  .report-table thead th {
+    padding: 8pt 10pt !important;
+    font-size: 8pt !important;
+    font-weight: 700 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.07em !important;
+    color: #1a2e28 !important;
+    background: #e8f0ed !important;
+    border-right: 1px solid #c5d5cf !important;
+    border-bottom: 2px solid #3d5d53 !important;
+    text-align: left !important;
+    white-space: nowrap;
+  }
+
+  .report-table thead th:last-child {
+    border-right: none !important;
+  }
+
+  /* ── 9. Table body cells ── */
+  .report-table tbody td {
+    padding: 7pt 10pt !important;
+    border-bottom: 1px solid #dde6e3 !important;
+    border-right: 1px solid #edf2f0 !important;
+    font-size: 10pt !important;
+    color: #111 !important;
+    vertical-align: top !important;
+    word-break: break-word;
+  }
+
+  .report-table tbody td:last-child {
+    border-right: none !important;
+  }
+
+  .report-table tbody tr:last-child td {
+    border-bottom: 1px solid #dde6e3 !important;
+  }
+
+  /* Zebra striping for readability in print */
+  .report-table tbody tr:nth-child(even) {
+    background: #f7faf9 !important;
+  }
+
+  /* ── 10. Prevent rows from splitting across pages ── */
+  .report-table tbody tr {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+
+  /* Keep the whole table together from the header */
+  .report-table-container,
+  .report-table-wrapper {
+    page-break-before: avoid;
+    break-before: avoid;
+  }
+
+  /* ── 11. DateTime cell ── */
+  .cell-datetime .relative-time {
+    display: none !important; /* "X ago" is useless in a PDF */
+  }
+
+  .cell-datetime .absolute-time {
+    font-size: 9.5pt !important;
+    color: #333 !important;
+    font-family: "JetBrains Mono", "Courier New", monospace;
+    display: block;
+    margin-top: 0;
+  }
+
+  /* ── 12. Teacher name ── */
+  .cell-teacher {
+    font-weight: 700 !important;
+    color: #1a2e28 !important;
+  }
+
+  /* ── 13. Activity badges — preserve color, drop decoration ── */
+  .activity-badge {
+    display: inline !important;
+    padding: 0 !important;
+    border-radius: 0 !important;
+    font-size: 10pt !important;
+    font-weight: 600 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+    gap: 0 !important;
+  }
+
+  /* Badge text stays colored for visual type differentiation */
+  .activity-badge.log-in {
+    color: #1d4ed8 !important;
+  }
+  .activity-badge.log-out {
+    color: #b91c1c !important;
+  }
+  .activity-badge.log-assessment {
+    color: #15803d !important;
+  }
+  .activity-badge.log-update {
+    color: #92400e !important;
+  }
+  .activity-badge.log-delete {
+    color: #991b1b !important;
+  }
+  .activity-badge.log-default {
+    color: #334155 !important;
+  }
+
+  .activity-text {
+    white-space: normal !important;
+    word-break: break-word !important;
+    font-size: 10pt !important;
+    line-height: 1.45;
+  }
+
+  /* ── 14. Empty state — keep it simple ── */
+  .empty-state {
+    text-align: center;
+    padding: 20pt 0;
+    color: #555 !important;
+    font-style: italic;
+    font-size: 10pt;
+  }
+
+  .empty-emoji {
+    display: none !important; /* emoji rendering is unreliable in PDF */
+  }
+}
+
+/* ════════════════════════════════════════
+   RESPONSIVE BREAKPOINTS
+   ════════════════════════════════════════ */
+
+/* ── Large tablet ≤ 1100px ── */
+@media (max-width: 1100px) {
+  .report-logs-container {
+    padding-top: 16px;
+  }
+
+  .logs-summary-cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .search-wrap {
+    min-width: 200px;
+  }
+}
+
+/* ── Tablet ≤ 900px ── */
+@media (max-width: 900px) {
+  .report-hero {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px; /* tight — title sits just above controls */
+    margin-bottom: 18px;
+    flex-wrap: nowrap;
+  }
+
+  .report-title {
+    flex-shrink: unset;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    justify-content: flex-start;
+    flex-shrink: unset;
+  }
+
+  .search-wrap {
+    max-width: 100%;
+    flex: 1 1 auto;
+  }
+
+  .select-wrap {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .report-controls-select {
+    min-width: 0;
+    width: 100%;
+  }
+
+  .report-controls-button {
+    justify-content: center;
+  }
+
+  .logs-summary-cards {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+
+  .kpi-card {
+    padding: 18px;
+  }
+  .card-value {
+    font-size: 1.6rem;
+  }
+  .card-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 1.15rem;
+    border-radius: 10px;
+  }
+}
+
+/* ── Mobile ≤ 680px — switch table to card list ── */
+@media (max-width: 680px) {
+  .report-logs-root {
+    padding: 0 12px 48px;
+  }
+  .report-logs-container {
+    padding-top: 12px;
+  }
+
+  .report-hero {
+    gap: 10px; /* extra tight on mobile — no wasted space */
+    margin-bottom: 16px;
+  }
+
+  /* KPI cards stack 2-col then 1-col */
+  .logs-summary-cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  /* Hide desktop table, show card list */
+  .report-table {
+    display: none;
+  }
+  .rl-card-list {
+    display: block;
+  }
+
+  /* Pagination center on mobile */
+  .pagination {
+    justify-content: center;
+    padding: 14px 12px;
+  }
+
+  .pagination span {
+    width: 100%;
+    text-align: center;
+    order: -1;
+    margin-bottom: 6px;
+  }
+
+  .select-wrap {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .report-controls-button {
+    grid-column: 1 / -1;
+  }
+}
+
+/* ── Small mobile ≤ 440px ── */
+@media (max-width: 440px) {
+  .logs-summary-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .report-logs-title {
+    font-size: 1.6rem;
+  }
+
+  .card-value {
+    font-size: 1.8rem;
+  }
+
+  .select-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .report-controls-button {
+    grid-column: auto;
+  }
+}

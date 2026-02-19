@@ -1,0 +1,28 @@
+/* Header styles */
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 10px 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000; /* Make sure it's above other content */
+}
+
+header h1 {
+  margin: 0;
+  font-size: 24px;
+}
+
+/* Apply padding to the rest of the app's content */
+.app-container {
+  margin-top: 60px; /* Adjust this if your header is larger */
+  padding: 20px;
+}
+
+/* Optional: Make header sticky */
+header.sticky {
+  position: sticky;
+  top: 0;
+}

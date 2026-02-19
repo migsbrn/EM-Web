@@ -1,0 +1,487 @@
+/* ============================= */
+/* GLOBAL */
+/* ============================= */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+  background-color: #f0f3f7;
+}
+
+/* ============================= */
+/* MAIN LAYOUT */
+/* ============================= */
+
+.main-content {
+  padding: 20px;
+  max-width: 1400px;
+  margin: 80px auto 0;
+  width: 100%;
+}
+
+.dashboard-title {
+  font-size: clamp(1.4rem, 3vw, 2.5rem);
+  font-weight: 700;
+  margin: 20px 0 30px;
+  color: #333d47;
+  padding-left: 20px;
+}
+
+/* ============================= */
+/* KPI SECTION */
+/* ============================= */
+
+.kpi-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 0 20px;
+}
+
+.kpi-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s;
+  min-width: 0; /* prevent overflow in grid */
+}
+
+.kpi-card:hover {
+  transform: translateY(-4px);
+}
+
+.kpi-content {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.kpi-title {
+  font-size: clamp(0.75rem, 1.2vw, 0.9rem);
+  color: #888;
+  margin-bottom: 5px;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.kpi-value {
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  font-weight: 800;
+  margin: 0;
+  line-height: 1.1;
+}
+
+.kpi-icon-container {
+  height: 48px;
+  width: 48px;
+  min-width: 48px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 1.3rem;
+  opacity: 0.9;
+  margin-left: 12px;
+}
+
+/* ============================= */
+/* CHART SECTION */
+/* ============================= */
+
+.charts-container {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  margin-bottom: 24px;
+  padding: 0 20px;
+}
+
+.chart-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  min-height: 260px;
+  width: 100%;
+  overflow: hidden; /* prevent recharts overflow bleed */
+}
+
+.chart-card h3 {
+  font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #4c6a9e;
+  border-bottom: 2px solid #f0f0f0;
+  padding-bottom: 10px;
+}
+
+/* ============================= */
+/* RECENT ACTIVITY */
+/* ============================= */
+
+.recent-activity-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  margin: 0 20px 24px;
+}
+
+.recent-activity-card h3 {
+  font-size: clamp(0.95rem, 1.5vw, 1.3rem);
+  font-weight: 600;
+  margin-bottom: 15px;
+  color: #4c6a9e;
+}
+
+.recent-activity {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch; /* smooth scroll on iOS */
+}
+
+.recent-activity-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 480px; /* reduced from 600 for better mobile experience */
+}
+
+.recent-activity-table th,
+.recent-activity-table td {
+  padding: 12px 14px;
+  text-align: left;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: clamp(0.78rem, 1.1vw, 0.95rem);
+}
+
+.recent-activity-table th {
+  background-color: #7ca1cc;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: clamp(0.72rem, 1vw, 0.9rem);
+  white-space: nowrap;
+}
+
+.recent-activity-table tbody tr:hover {
+  background-color: #f5f8fc;
+}
+
+/* ============================= */
+/* STATUS COLORS */
+/* ============================= */
+
+.activity-row-approved,
+.activity-row-active {
+  background-color: #e6f7ed;
+}
+
+.activity-row-rejected,
+.activity-row-deleted {
+  background-color: #fff1f0;
+}
+
+.activity-row-inactive {
+  background-color: #fffbe6;
+}
+
+/* ============================= */
+/* RECENT ACTIVITY — MOBILE CARDS */
+/* Desktop: table shown, cards hidden */
+/* Mobile:  table hidden, cards shown */
+/* ============================= */
+
+/* Cards are invisible on desktop — only activated at ≤768px */
+.ra-card-list {
+  display: none;
+}
+
+.ra-card {
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 10px;
+  border: 1px solid #e8edf4;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  transition:
+    box-shadow 0.18s ease,
+    transform 0.18s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.ra-card:last-child {
+  margin-bottom: 0;
+}
+
+.ra-card:hover {
+  box-shadow: 0 5px 14px rgba(0, 0, 0, 0.09);
+  transform: translateY(-1px);
+}
+
+/* Left-edge accent strip matching row status colours */
+.ra-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 10px 0 0 10px;
+  background: #7ca1cc; /* default */
+}
+
+.ra-card.activity-row-approved::before,
+.ra-card.activity-row-active::before {
+  background: #52c47a;
+}
+
+.ra-card.activity-row-rejected::before,
+.ra-card.activity-row-deleted::before {
+  background: #ff7875;
+}
+
+.ra-card.activity-row-inactive::before {
+  background: #ffc53d;
+}
+
+/* Status background tints — match the table row colours */
+.ra-card.activity-row-approved,
+.ra-card.activity-row-active {
+  background: linear-gradient(135deg, #f6ffed 0%, #ffffff 80%);
+}
+
+.ra-card.activity-row-rejected,
+.ra-card.activity-row-deleted {
+  background: linear-gradient(135deg, #fff1f0 0%, #ffffff 80%);
+}
+
+.ra-card.activity-row-inactive {
+  background: linear-gradient(135deg, #fffbe6 0%, #ffffff 80%);
+}
+
+/* Top row: icon + action text */
+.ra-card-action {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #333d47;
+  line-height: 1.45;
+  word-break: break-word;
+  padding-left: 8px; /* indent away from the accent strip */
+  margin-bottom: 10px;
+}
+
+/* Bottom meta row: date on left, admin pill on right */
+.ra-card-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding-top: 9px;
+  border-top: 1px solid #eff2f7;
+  padding-left: 8px;
+}
+
+.ra-card-date {
+  font-size: 0.76rem;
+  color: #94a3b8;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.ra-card-date::before {
+  content: "🗓";
+  font-size: 0.72rem;
+}
+
+.ra-card-admin {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: #4c6a9e;
+  background: #eef4fb;
+  padding: 3px 10px;
+  border-radius: 999px;
+  white-space: nowrap;
+  border: 1px solid #d6e4f5;
+}
+
+/* ============================= */
+/* RESPONSIVE BREAKPOINTS */
+/* ============================= */
+
+/* 💻 Large tablets / small desktops */
+@media (max-width: 1024px) {
+  .charts-container {
+    grid-template-columns: 1fr; /* stack charts vertically */
+  }
+
+  .chart-card {
+    min-height: 240px;
+  }
+}
+
+/* 📱 Tablet portrait */
+@media (max-width: 768px) {
+  .main-content {
+    padding: 12px;
+    margin-top: 60px;
+  }
+
+  .dashboard-title {
+    padding-left: 10px;
+    margin: 12px 0 20px;
+  }
+
+  .kpi-container {
+    padding: 0 10px;
+    gap: 12px;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  }
+
+  .kpi-card {
+    padding: 16px;
+  }
+
+  .kpi-icon-container {
+    height: 42px;
+    width: 42px;
+    min-width: 42px;
+    font-size: 1.1rem;
+  }
+
+  .charts-container {
+    padding: 0 10px;
+    gap: 12px;
+  }
+
+  .chart-card {
+    padding: 16px;
+    min-height: 220px;
+  }
+
+  .recent-activity-card {
+    margin: 0 10px 20px;
+    padding: 16px;
+  }
+
+  /* ── Switch: hide table, show cards on tablet/mobile ── */
+  .recent-activity-table-wrapper {
+    display: none; /* hides the scrollable table wrapper */
+  }
+
+  .ra-card-list {
+    display: block; /* activates the card layout */
+  }
+}
+
+/* 📱 Mobile phones */
+@media (max-width: 480px) {
+  .main-content {
+    padding: 8px;
+    margin-top: 56px;
+  }
+
+  .dashboard-title {
+    padding-left: 8px;
+    margin: 10px 0 16px;
+  }
+
+  .kpi-container {
+    padding: 0 8px;
+    /* 2-column grid for phones — fits all 3 cards neatly */
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  /* Last card spans full width if count is odd */
+  .kpi-card:last-child:nth-child(odd) {
+    grid-column: 1 / -1;
+  }
+
+  .kpi-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 14px;
+  }
+
+  .kpi-icon-container {
+    align-self: flex-end;
+    margin-left: 0;
+    height: 38px;
+    width: 38px;
+    min-width: 38px;
+    font-size: 1rem;
+  }
+
+  .charts-container {
+    padding: 0 8px;
+    gap: 10px;
+  }
+
+  .chart-card {
+    padding: 14px;
+    min-height: 200px;
+    border-radius: 10px;
+  }
+
+  .chart-card h3 {
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+    padding-bottom: 8px;
+  }
+
+  .recent-activity-card {
+    margin: 0 8px 16px;
+    padding: 14px;
+    border-radius: 10px;
+  }
+
+  /* Tighten card spacing on small phones */
+  .ra-card {
+    padding: 12px 14px;
+    margin-bottom: 8px;
+  }
+
+  .ra-card-action {
+    font-size: 0.84rem;
+  }
+
+  .ra-card-date,
+  .ra-card-admin {
+    font-size: 0.72rem;
+  }
+}
+
+/* 📱 Very small phones (e.g. iPhone SE) */
+@media (max-width: 360px) {
+  .kpi-container {
+    grid-template-columns: 1fr; /* single column on very small screens */
+  }
+
+  .kpi-card:last-child:nth-child(odd) {
+    grid-column: auto;
+  }
+
+  .kpi-card {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .kpi-icon-container {
+    align-self: center;
+    margin-left: auto;
+  }
+}

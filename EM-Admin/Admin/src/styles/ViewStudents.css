@@ -1,0 +1,989 @@
+/* ============================================================
+   ViewStudents.css — Fully Responsive & Modern Student List UI
+   ============================================================ */
+
+@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap");
+
+:root {
+  --teal: #3ecfbb;
+  --teal-dark: #2aa898;
+  --teal-light: #e6faf8;
+  --red: #e65656;
+  --amber: #f59e0b;
+  --green: #22c55e;
+  --bg: #f0f4f8;
+  --card: #ffffff;
+  --border: #e2e8f0;
+  --text: #1e293b;
+  --muted: #64748b;
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 12px 40px rgba(0, 0, 0, 0.14);
+  --radius: 14px;
+  --radius-sm: 8px;
+  --radius-pill: 999px;
+  --font: "Plus Jakarta Sans", sans-serif;
+  --mono: "DM Mono", monospace;
+  --transition: 0.2s ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── Main Container ── */
+.vs-container {
+  padding: 32px 48px 60px;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+/* ── Page Header ── */
+.vs-page-header {
+  margin-bottom: 24px;
+  padding-top: 20px;
+}
+
+.vs-title {
+  font-size: clamp(1.6rem, 3vw, 2.4rem);
+  font-weight: 800;
+  color: var(--text);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+}
+
+.vs-subtitle {
+  font-size: 0.95rem;
+  color: var(--muted);
+  margin-top: 6px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.vs-subtitle-badge {
+  background: var(--teal-light);
+  color: var(--teal-dark);
+  font-weight: 700;
+  font-size: 0.8rem;
+  padding: 2px 10px;
+  border-radius: var(--radius-pill);
+  font-family: var(--mono);
+}
+
+/* ── Controls Bar ── */
+.vs-controls {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.vs-controls-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.vs-search-wrapper {
+  position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 400px;
+}
+
+.vs-search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--muted);
+  font-size: 1rem;
+  pointer-events: none;
+}
+
+.vs-search {
+  width: 100%;
+  padding: 11px 16px 11px 40px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-family: var(--font);
+  background: var(--card);
+  color: var(--text);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+  box-shadow: var(--shadow-sm);
+}
+
+.vs-search::placeholder {
+  color: var(--muted);
+}
+
+.vs-search:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(62, 207, 187, 0.18);
+}
+
+.vs-select-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.vs-select {
+  padding: 11px 38px 11px 16px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-pill);
+  font-size: 0.9rem;
+  font-family: var(--font);
+  background: var(--card);
+  color: var(--text);
+  appearance: none;
+  cursor: pointer;
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg' width%3D'12' height%3D'12' viewBox%3D'0 0 12 12'%3E%3Cpath fill%3D'%2364748b' d%3D'M6 8L1 3h10z'%2F%3E%3C%2Fsvg%3E");
+  background-repeat: no-repeat;
+  background-position: right 14px center;
+  width: 180px;
+}
+
+.vs-select:focus {
+  outline: none;
+  border-color: var(--teal);
+  box-shadow: 0 0 0 3px rgba(62, 207, 187, 0.18);
+}
+
+/* ── Table Container ── */
+.vs-table-container {
+  background: var(--card);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+/* ── Desktop Table ── */
+.vs-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.vs-table thead {
+  background: linear-gradient(135deg, #f8fbfb 0%, #eef6f5 100%);
+  border-bottom: 2px solid var(--border);
+}
+
+.vs-table th {
+  padding: 14px 16px;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.vs-table td {
+  padding: 14px 16px;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.9rem;
+  vertical-align: middle;
+}
+
+.vs-table tbody tr {
+  transition: background var(--transition);
+}
+
+.vs-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.vs-table tbody tr:hover {
+  background: #f8fffe;
+}
+
+/* ── Mobile Card Layout ── */
+.vs-card-list {
+  display: none;
+}
+
+.vs-student-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  margin: 12px;
+  box-shadow: var(--shadow-sm);
+  transition:
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.vs-student-card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-1px);
+}
+
+.vs-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 14px;
+}
+
+.vs-card-nickname {
+  font-weight: 700;
+  font-size: 1.05rem;
+  color: var(--text);
+}
+
+.vs-card-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 7px 0;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.85rem;
+  gap: 10px;
+}
+
+.vs-card-row:last-of-type {
+  border-bottom: none;
+}
+
+.vs-card-label {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  flex-shrink: 0;
+}
+
+.vs-card-value {
+  color: var(--text);
+  font-weight: 500;
+  text-align: right;
+  word-break: break-word;
+}
+
+.vs-card-footer {
+  margin-top: 14px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ── Teacher Name + Status ── */
+.vs-teacher-cell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.status-indicator {
+  display: inline-flex;
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.status-indicator.online {
+  background: var(--green);
+  box-shadow: 0 0 0 2px rgba(34, 197, 94, 0.2);
+}
+.status-indicator.offline {
+  background: #cbd5e1;
+}
+
+.status-indicator.inline {
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+/* ── Progress Pills ── */
+.stat-value {
+  font-weight: 700;
+  font-family: var(--mono);
+  font-size: 0.88rem;
+  padding: 4px 10px;
+  border-radius: var(--radius-pill);
+  display: inline-block;
+}
+
+.stat-value.vs-progress-high {
+  background: rgba(34, 197, 94, 0.12);
+  color: #16a34a;
+}
+.stat-value.vs-progress-medium {
+  background: rgba(245, 158, 11, 0.12);
+  color: #b45309;
+}
+.stat-value.vs-progress-low {
+  background: rgba(230, 86, 86, 0.12);
+  color: #dc2626;
+}
+
+/* ── Details Button ── */
+.vs-more-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 16px;
+  background: var(--teal);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-pill);
+  font-size: 0.82rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    transform var(--transition),
+    box-shadow var(--transition);
+  box-shadow: 0 2px 8px rgba(62, 207, 187, 0.3);
+  white-space: nowrap;
+}
+
+.vs-more-btn:hover {
+  background: var(--teal-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(62, 207, 187, 0.4);
+}
+.vs-more-btn:active {
+  transform: translateY(0);
+}
+
+/* ── Empty / Loading states ── */
+.vs-state-message {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.vs-state-message svg {
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  opacity: 0.35;
+  display: block;
+  margin-inline: auto;
+}
+
+/* ── Pagination ── */
+.vs-pagination-controls {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  gap: 6px;
+  flex-wrap: wrap;
+  background: #fafbfc;
+}
+
+.vs-page-btn {
+  min-width: 34px;
+  height: 34px;
+  padding: 0 10px;
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--card);
+  color: var(--text);
+  font-size: 0.85rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition: all var(--transition);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.vs-page-btn:hover:not(:disabled) {
+  border-color: var(--teal);
+  color: var(--teal);
+  background: var(--teal-light);
+}
+
+.vs-page-btn.active {
+  background: var(--teal);
+  border-color: var(--teal);
+  color: #fff;
+  box-shadow: 0 2px 8px rgba(62, 207, 187, 0.35);
+}
+
+.vs-page-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.vs-page-numbers {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.vs-page-dots {
+  color: var(--muted);
+  padding: 0 4px;
+  align-self: center;
+  font-size: 0.85rem;
+}
+
+.vs-page-info {
+  font-size: 0.82rem;
+  color: var(--muted);
+  padding-left: 14px;
+  margin-left: 6px;
+  border-left: 1px solid var(--border);
+  white-space: nowrap;
+}
+
+/* ── Modal Backdrop ── */
+.vs-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 80px 16px 16px; /* top padding accounts for fixed nav header */
+  animation: fadeIn 0.25s ease;
+  overflow-y: auto;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ── Modal Box ── */
+.vs-modal-content {
+  background: var(--card);
+  border-radius: var(--radius);
+  width: 100%;
+  max-width: 760px;
+  /* Use calc to leave room for the fixed nav header (≈70px) + breathing room */
+  max-height: calc(100vh - 120px);
+  display: flex;
+  flex-direction: column;
+  box-shadow: var(--shadow-lg);
+  animation: slideIn 0.28s cubic-bezier(0.22, 0.68, 0, 1.2);
+  overflow: hidden;
+  /* Prevent modal from ever touching screen edges */
+  margin: auto;
+  flex-shrink: 0;
+}
+
+/* ── Modal Header ── */
+.vs-modal-header {
+  padding: 20px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, var(--teal) 0%, var(--teal-dark) 100%);
+  color: #fff;
+}
+
+.vs-modal-header h2 {
+  font-size: clamp(1rem, 2.5vw, 1.3rem);
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.3px;
+  word-break: break-word;
+}
+
+.vs-close-icon {
+  font-size: 1.6rem;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.75);
+  transition:
+    color var(--transition),
+    transform var(--transition);
+  line-height: 1;
+  flex-shrink: 0;
+  margin-left: 12px;
+}
+
+.vs-close-icon:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* ── Tab Bar ── */
+.vs-tab-bar {
+  display: flex;
+  border-bottom: 2px solid var(--border);
+  flex-shrink: 0;
+  background: #fafbfc;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding: 0 24px;
+}
+
+.vs-tab-bar::-webkit-scrollbar {
+  display: none;
+}
+
+.vs-tab {
+  padding: 12px 18px;
+  background: transparent;
+  border: none;
+  border-bottom: 2.5px solid transparent;
+  margin-bottom: -2px;
+  cursor: pointer;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font);
+  color: var(--muted);
+  white-space: nowrap;
+  transition:
+    color var(--transition),
+    border-color var(--transition);
+}
+
+.vs-tab:hover {
+  color: var(--text);
+}
+
+.vs-tab.active {
+  color: var(--teal-dark);
+  border-bottom-color: var(--teal);
+}
+
+/* ── Modal Body ── */
+.vs-modal-body {
+  padding: 24px;
+  overflow-y: auto;
+  flex: 1;
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}
+
+.vs-modal-body::-webkit-scrollbar {
+  width: 6px;
+}
+.vs-modal-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+.vs-modal-body::-webkit-scrollbar-thumb {
+  background: var(--border);
+  border-radius: 99px;
+}
+
+/* ── Overview Tab ── */
+.overview-content h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--teal-dark);
+  margin: 20px 0 12px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--teal-light);
+}
+
+.overview-content h3:first-child {
+  margin-top: 0;
+}
+
+.overview-content p {
+  font-size: 0.9rem;
+  padding: 6px 0;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.overview-content strong {
+  color: var(--muted);
+  font-weight: 600;
+  min-width: 130px;
+  flex-shrink: 0;
+}
+
+.overview-content hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 8px 0;
+}
+
+/* ── Stats Grid ── */
+.vs-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.vs-stats-grid p {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  box-shadow: none;
+}
+
+.vs-stats-grid strong {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  min-width: unset;
+}
+
+.vs-stats-grid .stat-value {
+  font-size: 1.1rem;
+  padding: 0;
+  background: transparent;
+  color: var(--text);
+}
+
+.vs-stats-grid .stat-value.vs-progress-high {
+  color: #16a34a;
+}
+.vs-stats-grid .stat-value.vs-progress-medium {
+  color: #b45309;
+}
+.vs-stats-grid .stat-value.vs-progress-low {
+  color: #dc2626;
+}
+
+/* ── History Tables ── */
+.assessment-history-content h3,
+.activity-log-content h3 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--muted);
+  margin: 0 0 14px;
+  padding-bottom: 8px;
+  border-bottom: 1.5px solid var(--border);
+}
+
+.history-table-container,
+.activity-history-table-container {
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+}
+
+.history-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+  min-width: 420px;
+}
+
+.history-table th {
+  padding: 10px 14px;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+  background: var(--bg);
+  border-bottom: 1.5px solid var(--border);
+  white-space: nowrap;
+}
+
+.history-table td {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border);
+  color: var(--text);
+  vertical-align: middle;
+}
+
+.history-table tbody tr:last-child td {
+  border-bottom: none;
+}
+.history-table tbody tr:hover {
+  background: #f8fffe;
+}
+
+/* ── Score Pills ── */
+.score-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-weight: 700;
+  font-size: 0.8rem;
+  font-family: var(--mono);
+  min-width: 52px;
+  text-align: center;
+}
+
+.score-pill.vs-progress-high {
+  background: rgba(34, 197, 94, 0.14);
+  color: #16a34a;
+}
+.score-pill.vs-progress-medium {
+  background: rgba(245, 158, 11, 0.14);
+  color: #b45309;
+}
+.score-pill.vs-progress-low {
+  background: rgba(230, 86, 86, 0.14);
+  color: #dc2626;
+}
+
+/* ── Activity Pills ── */
+.activity-type-pill {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.activity-type-pill.lesson {
+  background: #3b82f6;
+}
+.activity-type-pill.game {
+  background: #8b5cf6;
+}
+
+.no-history {
+  text-align: center;
+  color: var(--muted);
+  padding: 32px 16px;
+  font-size: 0.9rem;
+}
+
+/* ── Modal Footer ── */
+.vs-modal-footer {
+  padding: 14px 24px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  flex-shrink: 0;
+  background: #fafbfc;
+}
+
+.vs-close-btn {
+  padding: 9px 24px;
+  border-radius: var(--radius-pill);
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  font-size: 0.88rem;
+  font-weight: 600;
+  font-family: var(--font);
+  cursor: pointer;
+  transition:
+    background var(--transition),
+    transform var(--transition);
+}
+
+.vs-close-btn:hover {
+  background: var(--red);
+  transform: translateY(-1px);
+}
+
+/* ================================================================
+   RESPONSIVE BREAKPOINTS
+   ================================================================ */
+
+/* ── Large Tablet (≤ 1024px) ── */
+@media (max-width: 1024px) {
+  .vs-container {
+    padding: 24px 32px 48px;
+  }
+  .vs-page-header {
+    padding-top: 16px;
+  }
+  .vs-modal {
+    padding: 80px 16px 16px;
+  }
+}
+
+/* ── Tablet (≤ 768px): Switch table → card layout ── */
+@media (max-width: 768px) {
+  .vs-container {
+    padding: 16px 14px 40px;
+  }
+
+  .vs-page-header {
+    padding-top: 12px;
+    margin-bottom: 18px;
+  }
+
+  /* Fix Issue 3: Controls on mobile - stack vertically but tight gap */
+  .vs-controls {
+    margin-bottom: 16px;
+  }
+
+  .vs-controls-left {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .vs-search-wrapper {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .vs-search,
+  .vs-select {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .vs-select-wrapper {
+    width: 100%;
+  }
+
+  /* Hide desktop table, show card list */
+  .vs-table-wrapper {
+    display: none !important;
+  }
+  .vs-card-list {
+    display: block;
+    padding: 8px;
+  }
+
+  /* Pagination on mobile */
+  .vs-pagination-controls {
+    justify-content: center;
+    padding: 14px 12px;
+    gap: 4px;
+  }
+
+  .vs-page-info {
+    width: 100%;
+    text-align: center;
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    margin-top: 6px;
+  }
+
+  .vs-page-btn {
+    min-width: 32px;
+    height: 32px;
+    font-size: 0.8rem;
+  }
+
+  /* Fix Issue 5 on mobile: Modal slides up as bottom sheet */
+  .vs-modal {
+    padding: 0;
+    align-items: flex-end;
+    /* Still needs high z-index to clear nav */
+    z-index: 9999;
+  }
+
+  .vs-modal-content {
+    max-width: 100%;
+    max-height: 92vh;
+    border-radius: var(--radius) var(--radius) 0 0;
+    animation: slideUp 0.3s cubic-bezier(0.22, 0.68, 0, 1.2);
+    margin: 0;
+  }
+
+  @keyframes slideUp {
+    from {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .vs-modal-header {
+    padding: 16px 18px;
+  }
+  .vs-tab-bar {
+    padding: 0 12px;
+  }
+  .vs-tab {
+    padding: 10px 10px;
+    font-size: 0.8rem;
+  }
+  .vs-modal-body {
+    padding: 16px;
+  }
+  .vs-modal-footer {
+    padding: 12px 16px;
+  }
+
+  .overview-content strong {
+    min-width: 110px;
+  }
+
+  .vs-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ── Small Mobile (≤ 480px) ── */
+@media (max-width: 480px) {
+  .vs-title {
+    font-size: 1.5rem;
+  }
+  .vs-stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .vs-student-card {
+    margin: 8px 0;
+  }
+  .vs-card-list {
+    padding: 8px 0;
+  }
+  .vs-tab {
+    padding: 10px 8px;
+    font-size: 0.75rem;
+  }
+}

@@ -1,0 +1,343 @@
+/* ------------------------------------------------------ */
+/* HEADER CONTAINER (Original structure, mostly unused due to Bootstrap) */
+/* ------------------------------------------------------ */
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--section-bg, #ffffff);
+  color: var(--text-color, rgb(0, 0, 0));
+  padding: 20px 15px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.header-admin {
+  font-size: 1.4em;
+  font-weight: bold;
+  margin-right: -30px;
+}
+
+/* ------------------------------------------------------ */
+/* BOOTSTRAP OVERRIDES FOR LIGHT THEME */
+/* ------------------------------------------------------ */
+
+/* Add left border separator on first nav item to visually separate from Admin brand */
+.navbar-light .navbar-nav {
+  flex: 1;
+  justify-content: center;
+  padding-left: 24px;
+  border-left: 1px solid #dee2e6;
+  margin-left: 8px;
+}
+
+/* Style the links on the light navigation bar (black text) */
+.navbar-light .navbar-nav .nav-link {
+  color: #333333; /* Dark gray/Black for default text */
+  font-weight: 500;
+  font-size: 1.05em; /* Increased font size for nav links */
+  padding: 8px 15px !important;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+  color: #007bff; /* Primary blue on hover */
+  background-color: #f3f3f3; /* Subtle light gray highlight */
+  transform: translateY(-1px); /* Slight lift effect */
+}
+
+/* Active Link State */
+.navbar-light .navbar-nav .nav-link.active {
+  color: #ffffff; /* White text on blue background for active link */
+  font-weight: 600;
+  background-color: #007bff; /* Primary blue for active */
+  box-shadow: 0 2px 5px rgba(0, 123, 255, 0.25);
+  transform: none;
+}
+
+/* Fix profile button appearance on light nav */
+.navbar-light .dropdown > .btn-light {
+  background-color: transparent !important;
+  border: 1px solid #dee2e6; /* Light gray border */
+  border-radius: 50%;
+  padding: 0;
+  width: 44px;
+  height: 44px;
+  transition: all 0.3s ease;
+}
+
+.navbar-light .dropdown > .btn-light:hover {
+  border-color: #007bff;
+  box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+  transform: scale(1.05);
+}
+
+/* Placeholder icon color on light nav */
+.profile-placeholder-header {
+  background: #e9ecef !important; /* Light gray background */
+  color: #6c757d !important; /* Medium gray icon */
+}
+
+/* ------------------------------------------------------ */
+/* PROFILE IMAGE + DROPDOWN (Original) */
+/* ------------------------------------------------------ */
+
+.profile-wrapper {
+  position: relative;
+  margin-right: 50px;
+}
+
+.profile-link {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+/* Hover lift for profile icon */
+.profile-link:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Profile image round */
+.profile-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* Dropdown menu */
+.profile-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  background-color: var(--section-bg, #ffffff);
+  border: 1px solid var(--border-color, #ddd);
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  width: 180px;
+  z-index: 1001;
+  display: flex;
+  flex-direction: column;
+  animation: fadeIn 0.2s ease-in-out;
+}
+
+/* Items in dropdown */
+.dropdown-item {
+  padding: 12px 16px;
+  font-size: 1em;
+  text-align: left;
+  background: transparent;
+  border: none;
+  color: var(--text-color, #333);
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.dropdown-item:hover {
+  background-color: var(--hover-bg, #f0f0f0);
+}
+
+.logout-btn {
+  border-top: 1px solid var(--border-color, #e0e0e0);
+  color: #d9534f;
+}
+
+/* For page content spacing */
+body {
+  margin-top: 100px;
+}
+
+/* ------------------------------------------------------ */
+/* MOBILE MENU OVERRIDES (Fix for Full Visibility) */
+/* ------------------------------------------------------ */
+
+@media (max-width: 991.98px) {
+  /* Remove the desktop separator on mobile */
+  .navbar-light .navbar-nav {
+    border-left: none;
+    padding-left: 0;
+    margin-left: 0;
+    justify-content: flex-start;
+  }
+
+  /* md breakpoint for Bootstrap */
+  .navbar-collapse {
+    /* FIX: Ensures the whole menu is visible and scrolls if content is long */
+    background-color: #ffffff;
+    border-radius: 8px;
+    margin-top: 10px;
+    padding: 15px 10px;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    left: 0;
+    position: relative !important; /* Critical to prevent cutoff */
+  }
+
+  /* Add scrolling behavior for long menus */
+  .navbar-collapse.collapsing,
+  .navbar-collapse.show {
+    overflow-y: auto;
+    max-height: calc(
+      100vh - 100px
+    ); /* Adjust max height to fit within viewport */
+  }
+
+  /* Style the links inside the collapsed menu */
+  .navbar-collapse .nav-item .nav-link {
+    color: #333 !important;
+    font-size: 1.05em; /* Inherit the increased font size */
+    padding: 10px 15px !important;
+    margin-bottom: 5px;
+  }
+
+  .navbar-collapse .nav-item .nav-link:hover {
+    background-color: #f8f9fa !important;
+  }
+
+  .navbar-collapse .nav-item .nav-link.active {
+    color: #007bff !important;
+    background-color: #eef5ff !important;
+  }
+
+  /* Profile dropdown on mobile */
+  .dropdown {
+    margin-top: 15px;
+    border-top: 1px solid #dee2e6;
+    padding-top: 15px;
+    text-align: left;
+    width: 100%;
+  }
+
+  .dropdown > .btn-light {
+    margin-left: 15px;
+  }
+}
+
+/* ------------------------------------------------------ */
+/* MODAL STYLES (Sign Out Confirmation - Original) */
+/* ------------------------------------------------------ */
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+
+.confirmation-modal {
+  background: var(--section-bg, #ffffff);
+  border-radius: 14px;
+  width: 90%;
+  max-width: 420px;
+  padding: 35px 30px;
+  text-align: center;
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.35);
+  animation: modalFadeIn 0.25s ease;
+}
+
+/* Title */
+.confirmation-modal h3 {
+  color: var(--text-color, #222);
+  margin: 0 0 12px;
+  font-size: 1.7em;
+  font-weight: 700;
+}
+
+/* Description */
+.confirmation-modal p {
+  color: var(--text-color-light, #555);
+  margin-bottom: 32px;
+  font-size: 1.05em;
+  line-height: 1.5;
+}
+
+/* Buttons wrapper */
+.modal-actions {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+}
+
+/* Buttons */
+.modal-actions button {
+  padding: 13px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 1.05em;
+  font-weight: 600;
+  flex: 1;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    transform 0.15s ease;
+}
+
+/* Cancel button */
+.cancel-btn {
+  background-color: #f3f3f3;
+  color: #333;
+}
+
+.cancel-btn:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Confirm sign-out button (Already Red) */
+.confirm-btn {
+  background-color: #e03b35;
+  color: #ffffff;
+}
+
+.confirm-btn:hover {
+  background-color: #c9302c;
+  transform: translateY(-2px);
+}
+
+/* Modal fade animation */
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.94);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Dropdown fade */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hide header when printing */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
